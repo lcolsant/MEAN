@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <title>Hunting Github</title>
+    <script type="text/javascript" src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script>
+
+    $(document).ready(function(){
+        
+        $('form').submit(function(){
+            var username = $('input[name="github_user"]').val();
+            $.get(`https://api.github.com/users/${username}`, function(data){     
+                console.log(data);      
+                var html_str = "";
+                html_str += `<p>Username: ${data.login}</p>`;
+                html_str += `<p>ID: ${data.id}</p>`;
+                html_str += `<p>Name: ${data.name}</p>`;
+                html_str += `<p>Location: ${data.location}</p>`;
+                html_str += `<p>Bio: ${data.bio}</p>`;
+                html_str += `<p>Public Repos: ${data.public_repos}</p>`;
+                $('.github_result').html(html_str);  
+            },'json');
+        
+            return false;
+        });
+    });   
+
+    </script>
+
+</head>
+<body>
+    <div class="github_user">
+        <form>
+            <h3>Get GitHub user info:</h3>
+            <input type="text" id="github_user" name="github_user" placeholder="Enter GitHub Username">
+            <button>Submit</button>
+            <!-- <input type="button" value="Submit"> -->
+        </form>
+    </div>
+    <div class="github_result">
+
+    </div>
+    
+</body>
+</html>
+
+
+
+
+
+
