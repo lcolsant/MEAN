@@ -1,54 +1,32 @@
-const _ = {
-  map: function(array, callback) {
-    for (let i = 0; i < array.length; i++) {
-      array[i] = callback(array[i]);
+//simulated really slow DB call.
+function getStuffFromDatabase(callback){
+  var data;
+  var myTimer = setTimeout(function(){
+    if (typeof(callback) == 'function'){
+      data = [{name:'Todd'},{name:'Michael'},{name:'Portia'}];
+      callback(data);
     }
-  },
-  reduce: function(array, callback, memo){
-      let el = 0;
-      if (!memo){
-        memo = array[0];
-        el = 1;
-      }
-      for (let i = el; i < array.length; i++) {
-        memo = callback(array[i], memo);
-      }
-      return memo;
-
-  },
-  find: function(array, callback) {
-    for (let i = 0; i < array.length; i++) {
-      if (callback(array[i])){
-        return array[i];
-      }
+  }, 10000);
+  return data;
+}    
+// ************CHANGES HERE **************
+function requestDataFromDatabase(){
+  var data = getStuffFromDatabase(function myCallback(data){ // ooh shiny callback!.. when is it invoked???
+    console.log(data, "ASynchronous");
+    for (var i = 0; i < data.length; i ++){
+      console.log(data[i].name);
     }
-  },
-  filter: function(array, callback) {
-    const tempArray = [];
-    for (let i = 0; i < array.length; i++) {
-      if (callback(array[i])) {
-        tempArray.push(array[i]);
-      }
-    }
-    // we could also modify the original array
-    return tempArray;
-  },
-  reject: function(array, callback) {
-    const tempArray = [];
-    for (let i = 0; i < array.length; i++) {
-      if (!callback(array[i])) {
-        tempArray.push(array[i]);
-      }
-    }
-    // we could also modify the original array
-    return tempArray;
-  },
+  });
+  console.log(data, "Synchronous");
 }
+//***************** END CHANGES **********************
+function catchFly(){
+  console.log('I just caught a fly!');
+}
+requestDataFromDatabase();
+// keep running my program!
+console.log('Hello');
+catchFly();
+//etc.
+ 
 
-const array = [3, 4, 5];
-_.map(array, function callback(x) { return x * 5; });
-console.log(array);
-console.log(_.find(array, function callback(x) { return x === 15; }));
-// note: we used named functions for clarity above, but we can also pass anonymous functions as the second parameter:
-console.log(_.filter(array, function(x) { return x > 20; }));
-  
