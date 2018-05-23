@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <h1>Car Data</h1>
+    <% for (var x in cars){ %>
+        <img src=<%= cars[x].image %>>
+        <h3>Make: <%= cars[x].make %></h3>
+        <h3>Model: <%= cars[x].model %></h4>
+        <h3>Year: <%= cars[x].year %></h4>
+        <h3>Color: <%= cars[x].color %></h4>
+    <% } %>
+    <a href="/cars">Go Back</a>
+</body>
+</html>
