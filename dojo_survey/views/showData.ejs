@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show me the Data</title>
+</head>
+<body>
+    <p>Name entered was: <%=data.fname%></p>
+    <p>Location entered was: <%=data.location%></p>
+    <p>Language entered was: <%=data.language%></p>
+    <p>Comment entered was: <%=data.comment%></p>
+
+    <form action="/return" method="POST">
+    <input type="submit" value="Return">
+    </form>
+</body>
+</html>

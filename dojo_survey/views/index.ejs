@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Dojo Survey</h1>
+        <form action="/users" method='post'>
+            <p>
+                <label for="fname">Your Name:</label>
+                <input type="text" name='fname' >
+            </p>
+            <p>
+                <label for="location">Dojo Location:</label>
+                <select name="location">
+                    <option value="San Jose">San Jose</option>
+                    <option value="Seattle">Seattle</option>
+                    <option value="Chicago">Chicago</option>
+                </select>
+            </p>
+            <p>
+                <label for="language">Favorite Language:</label>
+                <select name="language">
+                    <option value="Python">Python</option>
+                    <option value="Javascript">Javascript</option>
+                    <option value="Java">Java</option>
+                </select>
+            </p>
+            <p>
+                <label for="desc">Comment (120 characters max):</label>
+                <textarea name="desc" id="mytext" ></textarea>
+            </p>
+            <p>
+                <input id="submit" type="submit" value="Submit" name='submitbtn' >
+            </p>
+        </form>
+    </div>
+</body>
+</html>
