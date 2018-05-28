@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+    
+            var socket = io();
+
+            $('#survey_form').submit(function(e) {
+        		e.preventDefault();
+				socket.emit("posting_form", {
+				  	name: $('#name').val(),
+                    location: $('#location').val(),
+                    language: $('#language').val(),
+                    comment: $('#desc').val()
+                });
+			});
+    
+            //display the emit response of the server called "updated_message" and "random_number"
+			socket.on('updated_message', function (data){
+			    $('#message').html("You emitted the following information to the server: " + JSON.stringify(data.response));
+			});
+            
+            socket.on('random_number', function (data){
+			   $('#number').html("Your lucky number emitted by the server is : " + JSON.stringify(data.response));
+            });
+            
+         });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1>Dojo Survey</h1>
+        <div id="message"></div>
+        <div id="number"></div>
+        <form action="" id="survey_form">
+            <p>
+                <label for="name">Your Name:</label>
+                <input type="text" name='name' id="name" >
+            </p>
+            <p>
+                <label for="location">Dojo Location:</label>
+                <select name="location" id="location">
+                    <option value="San Jose">San Jose</option>
+                    <option value="Seattle">Seattle</option>
+                    <option value="Chicago">Chicago</option>
+                </select>
+            </p>
+            <p>
+                <label for="language">Favorite Language:</label>
+                <select name="language" id="language">
+                    <option value="Python">Python</option>
+                    <option value="Javascript">Javascript</option>
+                    <option value="Java">Java</option>
+                </select>
+            </p>
+            <p>
+                <label for="desc">Comment (120 characters max):</label>
+                <textarea name="desc" id="desc" ></textarea>
+            </p>
+            
+                <input id="submit" type="submit" value="Submit" name='submitbtn' >
+            
+        </form>
+        <form action="/return" method="POST">
+            <input type="submit" id='submit' value="Return">
+        </form> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+h1{
+    color: darkblue;
+    margin-left: 20px;
+}
+
+input {
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    width: 200px;
+}
+
+label {
+    margin-left: 20px;
+}
+
+#container {
+    border: 1px solid darkblue;
+    /* height: 400px; */
+    width: 360px;
+    margin: 20px auto;
+    /* text-align: center; */
+}
+
+#submit {
+    width: 100px;
+    color: white;
+    background-color: darkblue;
+    
+}
+
+#desc {
+    display: block;
+    margin-left: 20px;
+    margin-top: 5px;
+    width: 295px;
+    height: 125px;
+
+}
