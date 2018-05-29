@@ -14,15 +14,7 @@ app.set('view engine', 'ejs');
 const server = app.listen(port, ()=> console.log(`listening on port ${port}`));
 const io = require('socket.io')(server);
 
-// io.on('connection', function (socket) {
-  
-//         socket.emit('greeting', { msg: 'Greetings, from server Node, brought to you by Sockets! -Server' });
-//         socket.on('thankyou', function (data) {
-//         console.log(data.msg); 
-//     });
-// });
 
-//listen to connection even from the client side
 io.sockets.on('connection', function (socket){
     //server listens to "posting_form" event
     socket.on("posting_form", function (data){
