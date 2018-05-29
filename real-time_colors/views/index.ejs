@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real Time Colors</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            var socket = io();
+            socket.on('greeting', function(data){
+                console.log(data.msg);
+                socket.emit('connected',{msg:'client connection complete.'});
+            });
+            
+            socket.on('updated',function(counter){
+                $('#number').text(counter);
+            });
+
+            $('#green').click(function(){
+                socket.emit('green');
+            });
+            $('#blue').click(function(){
+                socket.emit('blue');
+            });
+            $('#yellow').click(function(){
+                socket.emit('yellow');
+            });
+            
+            socket.on('changeColor',function(data){
+                $('#container').css('background-color',data.msg);
+            });
+
+        });
+    </script>
+</head>
+    <body>
+        <div id="container">
+            <h1>Press the buttons to change the color!</h1>
+                <button id="green">Green</button>
+                <button id="blue">Blue</button>
+                <button id="yellow">Yellow</button>
+        </div>
+    </body>
+</html>
