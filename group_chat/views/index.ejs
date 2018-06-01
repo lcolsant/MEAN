@@ -13,22 +13,20 @@
             socket.on('greeting', function(data){
                 console.log(data.msg);
                 socket.emit('connected',{msg:'client connection complete.'});
+                socket.emit('join',name);
             });
 
-            // socket.on('joinAnnouncement', function(data){
-            //     console.log(data.msg);
-            //     io.emit('join',{msg:data.msg});
-            // });
+            socket.on('join_announcement', function(name){
+                console.log(name);
+                $('#chatroom').append(`<p><span id='new_join'>${name} has joined the chatroom </span></p>`);
+            });
 
-            
-            
             socket.on('updateChatHistory', function(messages){
                 for (message of messages){
                     $('#chatroom').append(`<p><span id='new_msg'>${message.name}:</span> ${message.message}</p>`);
                 }
             });
 
-            
             $('#chat_btn').click(function(){
                 let data = {
                     message: $('#message').val(),
@@ -44,7 +42,26 @@
                 console.log('sent from server:'+data.msg.message);
                 $('#chatroom').append(`<p><span id='new_msg'>${data.msg.name}:</span> ${data.msg.message}</p>`);
             })
-            
+
+
+
+            // $(window).on('beforeunload',function(e){
+            //     return 'are you leaving?';
+            // });
+
+
+            // window.onbeforeunload = function(e) {
+            //     return 'are you leavin?';
+            //     // event.returnValue = $('#chatroom').append(`<p><span id='new_join'>${name} has left the chatroom </span></p>`);
+            // };
+
+
+
+            // socket.on('left_announcement', function(name){
+            //     console.log(name);
+            //     $('#chatroom').append(`<p><span id='new_join'>${name} has left the chatroom </span></p>`);
+            // });
+
 
         });
     </script>
@@ -54,7 +71,7 @@
 </head>
     <body>
         <div id="container">
-            <h2><u>Welcome to the Chatroom</u></h2>
+            <h2><u>Chatroom</u></h2>
             <div id="chatroom">
             </div>
             <input type="textarea" name="message" id="message" placeholder=" Enter a message:">

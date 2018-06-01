@@ -20,9 +20,18 @@ const io = require('socket.io')(server);
 io.sockets.on('connection', function(socket){
     socket.emit('greeting', {msg:'new socket connection made.'});
     socket.emit('updateChatHistory', chatHistory);
-    // socket.emit('joinAnnouncement', {msg:`${name} joined the chatroom`});
     socket.on('connected', function(data){
         console.log(data.msg);
+    
+    socket.on('join', function(data){
+        io.emit('join_announcement', data);
+    });
+
+    socket.on('left_room', function(data){
+        // console.log(`${data} left room!`);
+        const leaver = data;
+        io.emit('left_announcement', leaver);
+    });
 
     socket.on('incoming_msg',function(data){
         console.log('new message: ', data.msg.message);
