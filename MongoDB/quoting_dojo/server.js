@@ -39,14 +39,10 @@ app.get('/', function(req, res){
 
 app.post('/process', function(req, res){
     console.log('Post Data:', req.body);
-    let new_quote = new Quote({
-        name: req.body.name, 
-        quote: req.body.quote,
-    });
-
-    new_quote.save(function(err){
+    
+    Quote.create(req.body, function(err){
         if(err){
-            console.log('Something went wrong:', err);
+            console.log(err);
             for(var key in err.errors){
                 req.flash('registration', err.errors[key].message);
             }
@@ -54,8 +50,27 @@ app.post('/process', function(req, res){
             console.log('Successfully added quote.');
             res.redirect('/quotes');
         }
-    })
-})
+    });
+    
+    ///////alternative way to add to the db///////////////////////
+    // let new_quote = new Quote({
+    //     name: req.body.name, 
+    //     quote: req.body.quote,
+    // });
+
+    // new_quote.save(function(err){
+    //     if(err){
+    //         console.log('Something went wrong:', err);
+    //         for(var key in err.errors){
+    //             req.flash('registration', err.errors[key].message);
+    //         }
+    //     }else{
+    //         console.log('Successfully added quote.');
+    //         res.redirect('/quotes');
+    //     }
+    // })
+    ///////////////////////////////////////////////////////////////
+});
 
 app.get('/quotes', function(req,res){
    
