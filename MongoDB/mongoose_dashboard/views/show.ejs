@@ -1,0 +1,19 @@
+<html>
+<head>
+  <title>Show a Bear</title>
+</head>
+<body>
+  <h1>Bear Id: <%= bears[0].id %></h1>
+
+    <fieldset>
+        <p>Name: <%= bears[0].name %></p>
+        <p>Type: <%= bears[0].type %> </p>
+        <p>Weight: <%= bears[0].weight %> </p>
+    </fieldset> 
+    
+  <a href="/">Go Back</a>
+  <a href="/bears/edit/<%=bears[0].id %>">Edit</a>
+  <a href="/bears/destroy/<%=bears[0].id %>">Delete</a>
+
+</body>
+</html>

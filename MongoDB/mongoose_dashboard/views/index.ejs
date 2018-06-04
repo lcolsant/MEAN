@@ -1,0 +1,45 @@
+<html>
+<head>
+  <title>Mongoose Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Bears in Database</h1>
+  <table>
+    <tr>
+        <th>Name:</th>
+        <th>Created At:</th>
+        <th>Show:</th>
+        <th>Edit:</th>
+        <th>Delete:</th>
+    </tr>
+
+    <% for (var bear in bears){ %>
+
+    <tr>
+        <td><%= bears[bear].name %></td>
+        <td><%= bears[bear].createdAt %></td>
+        <td>
+          <form action="/bears/<%= bears[bear].id %>" method="GET">
+          <input id="submit" type="submit" name="show" value="show">
+          </form>
+        </td>
+        <td>
+            <form action="/bears/edit/<%= bears[bear].id %>" method="GET">
+            <input id="submit" type="submit" name="edit" value="edit">
+            </form>
+        </td>
+        <td>
+            <form action="/bears/destroy/<%= bears[bear].id %>" method="GET">
+            <input id="submit" type="submit" name="delete" value="delete">
+            </form>
+        </td>
+    </tr>
+    
+    <% } %>
+    
+  </table>
+  <a href="/bears/new">Add a new bear</a>
+
+</body>
+</html>

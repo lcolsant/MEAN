@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Edit Bear</title>
+</head>
+<body>
+  <h1>Edit Bear</h1>
+  <form action='/bears/<%= bears[0].id %>' method='POST'>
+  <table>
+    <tr>
+      <th>Name:</th>
+      <th>Type:</th>
+      <th>Weight:</th>
+    </tr>
+    <tr>
+      <td><input type="text" name="name" value="<%= bears[0].name %>"</td>
+      <td><input type="text" name="type" value="<%= bears[0].type %>"</td>
+      <td><input type="text" name="weight" value="<%= bears[0].weight %>"</td>
+    </tr>
+    <tr>
+      <td><input id="submit" type="submit" value="Edit"></td>
+    </tr>
+  </table>
+  <a href="/">Go back to bears</a>
+
+
+  </form>
+</body>
+</html>
