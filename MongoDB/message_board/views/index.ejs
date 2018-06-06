@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Board</title>
+    <script type="text/javascript">
+
+	</script>
+</head>
+<body>
+    <div id="top">
+        <h1>The Dojo Message Board</h1>
+        <form action="/message" method="POST">
+            <p><label for="name">Name:</label></p>
+            <p><input type="text", name="name"></p>            
+            <p><label for="message">Message:</label></p> 
+            <p><textarea name="message" id="message" cols="100" rows="5" placeholder="Post a message"></textarea></p>                
+            <input type="submit" value="Post Message" >
+        </form>
+    </div>
+
+    <h2>All Messages from MongoDB:</h2>
+    
+    <!-- add error messaging here -->
+    <% if (typeof(errors) !== 'undefined' ) { %>
+        <% for (const key in errors) { %>
+         <h3><%= errors[key].message %></h3>
+        <% } %>
+     <% } else { %>
+    <!-- end error messaging -->
+    <div id="bottom">
+
+        <% if (messages){ %>
+            <% for (const message of messages){ %>
+                <fieldset>
+                    <h3>Name: <%= message.name %></h3>
+                    <h3>Message: <%= message.message %></h3>
+
+                    <h4>Comments:</h4>
+                    <% if (message._comments){ %>
+                        <ul>
+                        <% for (const comment of message._comments){ %>
+                            <li><h4><%="Name: " + comment.name %></h4></li>
+                            <li><h4><%="Comment: " + comment.comment %></h4></li>
+                        </ul>
+                        <% } %> <!--end for -->
+                    <% } %> <!--end if -->
+
+                    <form action="/comment/<%= message._id %>" method='POST'>
+                        <p>Name: </p><input type="text" name="name">
+                        <p>Comment:</p><textarea name="comment" id="comment" cols="100" rows="2"></textarea>
+                        <p><input type="submit" value="Post Comment"></p> 
+                    </form>
+                </fieldset>
+            <% } %>   <!--end top-most for -->
+        <% } %>  <!--end top-most if -->
+                
+    </div>
+    <% } %>  <!--end if from errors if statement from lines 24-28 -->
+</body>
+</html>
