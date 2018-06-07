@@ -27,9 +27,9 @@ io.sockets.on('connection', function(socket){
         io.emit('join_announcement', data);
     });
 
-    socket.on('left_room', function(data){
-        // console.log(`${data} left room!`);
-        const leaver = data;
+    socket.on('disconnect', function(reason){
+        console.log(reason);
+        const leaver = reason;
         io.emit('left_announcement', leaver);
     });
 

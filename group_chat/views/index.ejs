@@ -44,24 +44,11 @@
             })
 
 
-
-            // $(window).on('beforeunload',function(e){
-            //     return 'are you leaving?';
-            // });
-
-
-            // window.onbeforeunload = function(e) {
-            //     return 'are you leavin?';
-            //     // event.returnValue = $('#chatroom').append(`<p><span id='new_join'>${name} has left the chatroom </span></p>`);
-            // };
-
-
-
-            // socket.on('left_announcement', function(name){
-            //     console.log(name);
-            //     $('#chatroom').append(`<p><span id='new_join'>${name} has left the chatroom </span></p>`);
-            // });
-
+            socket.on('left_announcement', function(name){
+                console.log('got here:', name);
+                console.log(`${name} has left the chartroom.`);
+                $('#chatroom').append(`<p><span id='new_join'>${name} has left the chatroom </span></p>`);
+            });
 
         });
     </script>
