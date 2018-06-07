@@ -42,14 +42,18 @@
                 console.log('sent from server:'+data.msg.message);
                 $('#chatroom').append(`<p><span id='new_msg'>${data.msg.name}:</span> ${data.msg.message}</p>`);
             })
-
-
-            socket.on('left_announcement', function(name){
-                console.log('got here:', name);
-                console.log(`${name} has left the chartroom.`);
-                $('#chatroom').append(`<p><span id='new_join'>${name} has left the chatroom </span></p>`);
+            
+            //disconnect process not working....
+            //disconnect process starts here on server side...sends name to server
+            socket.on('disconnect', function(name){
+                socket.emit('goodbye',name);
+                console.log(`${name} left the room -from client.`);
             });
 
+            //listens for server io emit announcement and updates chat room.
+            socket.on('left_announcement', function(name){
+                $('#chatroom').append(`<p><span id='new_join'>${name} has left the chatroom </span></p>`);
+            });
         });
     </script>
     <script>

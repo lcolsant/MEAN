@@ -27,12 +27,19 @@ io.sockets.on('connection', function(socket){
         io.emit('join_announcement', data);
     });
 
-    socket.on('disconnect', function(reason){
-        console.log(reason);
-        const leaver = reason;
-        io.emit('left_announcement', leaver);
-    });
+    // socket.on('disconnect', function(reason){
+    //     console.log(reason);
+    //     const leaver = reason;
+    //     io.emit('left_announcement', leaver);
+    // });
 
+    //server side part of disconnect process
+    socket.on('goodbye', function(name){
+        console.log(`${name} left the room -from server`);
+        let _name = name;
+        io.emit('left_announcement', _name);
+    });
+    
     socket.on('incoming_msg',function(data){
         console.log('new message: ', data.msg.message);
         console.log('username: ', data.msg.name);
