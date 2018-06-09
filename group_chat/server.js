@@ -5,6 +5,7 @@ const port = 8000;
 
 const app = express();
 const chatHistory = [];
+const users = {};
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname + '/static')));
@@ -22,24 +23,18 @@ io.sockets.on('connection', function(socket){
     socket.emit('updateChatHistory', chatHistory);
     socket.on('connected', function(data){
         console.log(data.msg);
+    });
     
     socket.on('join', function(data){
+        users[socket.id] = data;
         io.emit('join_announcement', data);
     });
 
-    // socket.on('disconnect', function(reason){
-    //     console.log(reason);
-    //     const leaver = reason;
-    //     io.emit('left_announcement', leaver);
-    // });
-
-    //server side part of disconnect process
-    socket.on('goodbye', function(name){
-        console.log(`${name} left the room -from server`);
-        let _name = name;
-        io.emit('left_announcement', _name);
+    socket.on('disconnect', function(reason){
+        const user = users[socket.id];
+        io.emit('left_announcement', user);
     });
-    
+
     socket.on('incoming_msg',function(data){
         console.log('new message: ', data.msg.message);
         console.log('username: ', data.msg.name);
@@ -53,7 +48,6 @@ io.sockets.on('connection', function(socket){
        
         chatHistory.push(message);
         
-        });
     });
 });
 
