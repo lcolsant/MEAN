@@ -1,6 +1,8 @@
+//require db and schema
 var mongoose = require('mongoose');
-var Quote = mongoose.model('Quotes');
+const Quote = mongoose.model('Quotes');
 
+//define and export controller logic to routes.js
 module.exports = {
     
     index: function(req,res){

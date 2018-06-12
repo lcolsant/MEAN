@@ -1,22 +1,14 @@
+//require mongoose for db and load schema into Quote
 const mongoose = require('mongoose')
 const Quote = mongoose.model('Quotes');
+
+//require logic controllers
 const control = require('../controllers/quotes.js');
 
+//define and export routes to server.js
 module.exports = function(app){
 
-    app.get('/', function(req, res){
-    
-        control.index(req, res);
-    });
-    
-    app.post('/process', function(req, res){
-     
-        control.process(req, res);
-
-    });
-    
-    app.get('/quotes', function(req,res){
-       
-        control.quotes(req, res);
-    })
+    app.get('/', control.index);
+    app.post('/process',  control.process);
+    app.get('/quotes',  control.quotes);
 }
