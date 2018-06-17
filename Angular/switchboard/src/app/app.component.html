@@ -1,0 +1,19 @@
+<!--Switchboard assignment
+Each switch div has an on and off button. One of the two buttons will show if 'switch' element in the switches
+array is truthy or falsey. If switch is true, the button.on class will override the default red background color
+for each button and change to green. The values are switched by passing the index of the array to the flipSwitch
+function, where the current boolean value for that element is negated and reassigned.   
+
+-->
+
+
+<div class="container">
+  <h1 [ngStyle]="{'color':'navy', 'margin-bottom':'20px'}">Switchboard</h1>
+  <div class="row">
+    <div class="switch" *ngFor="let switch of switches; let idx=index">
+      <button *ngIf="switch"  [ngClass]="{'on':switch}" (click)="flipSwitch(idx)">On</button>
+      <button *ngIf="!switch" [ngClass]="{'on':switch}" (click)="flipSwitch(idx)">Off</button>
+    </div>
+  </div>
+</div>
+
