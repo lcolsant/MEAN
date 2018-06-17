@@ -1,0 +1,11 @@
+<!-- clicking on a div passes the respective timezone to the getDate function which also sets 'timeZoneSelected' variable -->
+<!-- ngClass will assign the .selected class (which highlights the div) based on whether the statement is truthy -->
+
+<div class="container">
+  <h1 [ngStyle]="{'color':'navy', 'margin-bottom':'20px'}">US Timezone Display</h1>
+  <div (click)="getDate('PST')" class='square'[ngClass]="{selected: timeZoneSelected === 'PST'}" >PST </div>
+  <div (click)="getDate('MST')" class='square'[ngClass]="{selected: timeZoneSelected === 'MST'}" >MST </div>
+  <div (click)="getDate('CST')" class='square'[ngClass]="{selected: timeZoneSelected === 'CST'}" >CST </div>
+  <div (click)="getDate('EST')" class='square'[ngClass]="{selected: timeZoneSelected === 'EST'}" >EST </div>
+  <h2 [ngStyle]="{'color':'navy', 'margin-top':'20px'}">{{time | date:'medium'}}</h2>
+</div>
