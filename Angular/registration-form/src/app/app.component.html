@@ -1,0 +1,163 @@
+
+<div class="container">
+    <h1 [ngStyle]="{'margin-bottom':'20px'}">Registration</h1>
+    <div class="form">
+    <div *ngIf="formData.submitted">
+        <p>Thank you for registering with us {{user_name}}. We just sent you a confirmation
+          email at {{user_email}}. Have a wonderful day!
+        </p>
+      </div>
+      <h2 [ngStyle]="{'margin-bottom':'10px'}">Account Information</h2>
+      <!-- pass event object so that we can prevent form refresh using preventdefault -->
+      <form (submit)="onSubmit($event, formData)" #formData='ngForm'>
+
+        <!-- first name input and data validation for first name -->
+        <p>
+          <label for="fname">First Name: </label>
+          <input type="text" name="fname" [(ngModel)]='user.fname' required minlength="2" maxlength="24" #fname="ngModel">
+          <!-- {{fname.valid | json}}
+          {{fname.errors | json}} -->
+        </p>
+          <div *ngIf="fname.touched && fname.errors">
+            <div *ngIf='fname.errors.required'>
+              You must enter a first name.
+            </div>
+            <div *ngIf='fname.errors.minlength'>
+                First name must be at least {{fname.errors.minlength.requiredLength }} characters.
+            </div>
+          </div>
+
+
+          <!-- last name input and data validation for last name -->
+        <p>
+            <label for="lname">Last Name: </label>
+            <input type="text" name="lname"[(ngModel)]='user.lname'required minlength="2" maxlength="24" #lname="ngModel">
+        </p>
+
+          <div *ngIf="lname.touched && lname.errors">
+              <div *ngIf='lname.errors.required'>
+                You must enter a last name.
+              </div>
+              <div *ngIf='lname.errors.minlength'>
+                  Last name must be at least {{lname.errors.minlength.requiredLength }} characters.
+              </div>
+          </div>
+
+
+          <!--email input and data validation for email -->
+        <p>
+            <label for="email">Email: </label>
+            <input type="text" name="email"[(ngModel)]='user.email'required pattern="^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})" #email="ngModel">
+        </p>
+          <div *ngIf="email.touched && email.errors">
+              <div *ngIf='email.errors.required'>
+                You must enter an email.
+              </div>
+              <div *ngIf='email.errors.pattern'>
+                Invalid email.
+              </div>
+          </div>
+
+
+          <!-- password input data validation for password -->
+        <p>
+            <label for="password">Password: </label>
+            <input type="password" name="password"[(ngModel)]='user.password' required minlength="4" #password="ngModel">
+        </p>
+
+          <div *ngIf="password.touched && password.errors">
+              <div *ngIf='password.errors.required'>
+                You must enter a password.
+              </div>
+              <div *ngIf='password.errors.minlength'>
+                  Password must be at least {{password.errors.minlength.requiredLength }} characters.
+              </div>
+          </div>
+
+
+        <!-- password confirm input data validation for password confirm -->
+        <p>
+            <label for="passConfirm">Password (confirm): </label>
+            <input type="password" name="passConfirm"[(ngModel)]='user.passConfirm' required #passConfirm="ngModel">
+        </p>
+
+          <div *ngIf="passConfirm.touched && passConfirm.errors">
+              <div *ngIf='passConfirm.errors.required'>
+                You must enter a password confirmation.
+              </div>
+              <div *ngIf='passConfirm.value !== password.value'>
+                  Password confirmation must match your password.
+              </div>
+          </div>
+
+
+          <!-- Street address (add1) data validation for add1 -->
+        <p>
+            <label for="add1">Street Address: </label>
+            <input type="text" name="add1"[(ngModel)]='user.add1'required minlength="2" #add1="ngModel">
+        </p>
+
+          <div *ngIf="add1.touched && add1.errors">
+              <div *ngIf='add1.errors.required'>
+                You must enter a street name.
+              </div>
+              <div *ngIf='add1.errors.minlength'>
+                  Street name must be at least {{add1.errors.minlength.requiredLength }} characters.
+              </div>
+          </div>
+
+
+          <!-- Unit/apt (add2) input -->
+          <p>
+            <label for="add2">Unit/Apt # </label>
+            <input type="text" name="add2"[(ngModel)]='user.add2' #add2="ngModel">
+           </p>
+
+
+           <!-- city input and data validation for city -->
+           <p>
+            <label for="city">City: </label>
+            <input type="text" name="city"[(ngModel)]='user.city'required #city="ngModel">
+           </p>
+
+          <div *ngIf="city.touched && city.errors">
+              <div *ngIf='city.errors.required'>
+                You must enter a city.
+              </div>
+          </div>
+
+
+          <!-- state input and data validation for state -->
+          <p>
+            <label for="state">State: </label>
+            <input type="text" name="state"[(ngModel)]='user.state'required #state="ngModel">
+           </p>
+
+          <div *ngIf="state.touched && state.errors">
+              <div *ngIf='state.errors.required'>
+                You must enter a State.
+              </div>
+          </div>
+
+
+          <!-- lucky input and data validation for lucky -->
+          <p>
+            <label for="lucky">Are you feeling lucky: </label>
+            <input type="radio" name="lucky" value=true [(ngModel)]='user.lucky'required #lucky="ngModel">Yes
+            <input type="radio" name="lucky" value=false [(ngModel)]='user.lucky'required #lucky="ngModel">No
+          </p>
+
+          <div *ngIf="lucky.touched && lucky.errors">
+              <div *ngIf='lucky.errors.required'>
+                How do you feel?
+              </div>
+          </div>
+
+
+        <!-- Submit button will only show if there are no errors from any of the user properties -->
+        <div *ngIf='!fname.errors && !lname.errors && !email.errors && !password.errors && !passConfirm.errors && !add1.errors && !add2.errors && !city.errors && !state.errors && !lucky.errors'>
+            <input type="submit" name="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
