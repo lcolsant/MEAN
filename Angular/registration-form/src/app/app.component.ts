@@ -8,7 +8,7 @@ import { User } from './user'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  dataSubmitted: boolean = false;
+
   //instantiate new user object
   user = new User();
 
