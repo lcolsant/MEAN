@@ -1,0 +1,37 @@
+
+<section class='main'>
+  <fieldset id="fieldset">
+    <legend>Power Component</legend>
+
+    <div class="top-row">
+      <span id="plevel">Initial Power Level:</span><input type="number" max="100" min="0" value="100" [(ngModel)]="power">
+    </div>
+
+    <div class="bottom-row">
+      <div class="block">
+        <app-human [plevel]='power'></app-human>
+      </div>
+      <div class="block">
+        <app-saiyan [plevel]='power'></app-saiyan>
+      </div>
+      <div class="block">
+        <app-super-saiyan [plevel]='power'></app-super-saiyan>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <div class="block">
+        <app-super-saiyan-two [plevel]='power'></app-super-saiyan-two>
+      </div>
+      <div class="block">
+        <app-super-saiyan-three [plevel]='power'></app-super-saiyan-three>
+      </div>
+      <div class="block">
+        <app-super-saiyan-four [plevel]='power'></app-super-saiyan-four>
+      </div>
+    </div>
+
+  </fieldset>
+</section>
+
+

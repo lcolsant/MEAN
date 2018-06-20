@@ -1,0 +1,8 @@
+
+<fieldset>
+  <legend>Super-Saiyan-Four Component:</legend>
+  <p>Power Level: {{plevel}}</p>
+  <h4 *ngIf="plevel > 9000 &&  plevel <= 20000">Over 9000!</h4>
+  <h4 *ngIf="plevel > 20000 && plevel < 50000">Superlative!</h4>
+  <h4 *ngIf="plevel >= 50000">The One!</h4>
+</fieldset>
