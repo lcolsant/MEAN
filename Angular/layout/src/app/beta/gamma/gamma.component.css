@@ -1,0 +1,12 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+.gamma{
+  border: 1px dotted black;
+  width: 90%;
+  height: 80%;
+  margin: 10px auto;
+
+}
