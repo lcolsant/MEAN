@@ -1,0 +1,6 @@
+
+
+<section>
+  <app-quote-create (myEvent)="dataFromChild($event)"></app-quote-create>
+  <app-quote-list [myQuotes]='quotes'(deleteQuoteEvent)="deleteQuote"></app-quote-list>
+</section>

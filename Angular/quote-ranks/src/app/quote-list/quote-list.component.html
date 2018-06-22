@@ -1,0 +1,15 @@
+<section>
+  <h1>Quotes List</h1>
+  <fieldset *ngFor="let quote of myQuotes | orderby:'rating':'desc' ">
+    <div>
+      <p>"{{quote.quote}}"</p>
+      <p>-{{quote.author}}</p>
+      <p>Rating: {{quote.rating}}</p>
+    </div>
+    <div>
+      <button (click)="voteUp(quote)">Vote Up</button>
+      <button (click)="voteDown(quote)">Vote Down</button>
+      <button (click)="delete(quote)">Delete</button>
+    </div>
+  </fieldset>
+</section>
