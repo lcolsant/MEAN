@@ -10,6 +10,7 @@ import { TaskService } from './task.service';
 })
 export class AppComponent implements OnInit {
   data: any[] = [];
+  error: any[] = [];
   username:string = "";
   score:number = 0;
   userExists:boolean = false;
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
 
   //subscribes to task service and provides callback functions
   ngOnInit(){
+    //subscribe to success route behavior handler
     this._taskService.tasks.subscribe(
       tasks => {
         this.data = tasks;
@@ -25,10 +27,21 @@ export class AppComponent implements OnInit {
         this.score = this.data['public_repos']+this.data['followers'];
         this.userExists = true;
       },
-      error => {   ////////////error handling not working!! /////////////////////
-        console.log('error found');
+      // error => {   ////////////error handling not working!! /////////////////////
+      //   console.log('error found');
+      //   this.userExists = false;
+      // }
+    );
+
+    //subscribe to error route behavior handler
+    this._taskService.errors.subscribe(
+      errors => {
+        this.error = errors;
+        console.log(`error: ${this.error}`);
         this.userExists = false;
-      }
+        console.log('user does not exists');
+      },
+
     );
   }
 
