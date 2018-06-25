@@ -1,0 +1,27 @@
+<div class="container">
+
+  <section class='github'>
+   <h1>GitHub Score</h1>
+   <form (submit)="sendData(formData, $event)" #formData='ngForm'>
+     <label for="username">GitHub Username: </label>
+     <input type="text" name="username" [(ngModel)]='username'>
+     <p><input id="button" type="submit" value="Calculate my GitHub Score"></p>
+   </form>
+  </section>
+
+  <section class='github'>
+    <div class="score" *ngIf="userExists">
+      <h1>Score for {{ data['login'] }} </h1>
+      <h3>{{ score }}</h3>
+      <h3 class='red' *ngIf="score < 20">Needs Work!</h3>
+      <h3 class='orange' *ngIf="score >= 20 && score < 50">A decent start!</h3>
+      <h3 *ngIf="score >= 50 && score < 100">Doing good!</h3>
+      <h3 class='green' *ngIf="score >= 100 && score < 200">Great Job!</h3>
+      <h3 class='blue' *ngIf="score >= 200">Github Elite!</h3>
+    </div>
+  </section>
+
+</div>
+
+
+
