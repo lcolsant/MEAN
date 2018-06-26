@@ -7,31 +7,27 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TaskService {
   tasks: BehaviorSubject<any[]> = new BehaviorSubject([]);
-  errors: BehaviorSubject<any[]> = new BehaviorSubject([]);
+  errors: BehaviorSubject<string[]> = new BehaviorSubject([]);
 
   constructor(private _http: HttpClient) { }
 
-  //task service accepts username as parameter and makes call to github api
-  // gitData(username:string){
-  //     this._http.get(`https://api.github.com/users/${username}`).subscribe(
-  //     (task: any[]) => this.tasks.next(task),  //success path
-  //     (error) => this.tasks.next(error),  //error path not working!!
-  //   );
-  // }
-
-
+  //takes git username as parameter and returns data/error from api depending on
+  //valid username or not. Subscribe method calls on handleData function if valid
+  //and handleErrors if not valid.
   gitData(username:string){
-    this._http.get(`https://api.github.com/users/${username}`).subscribe(this.handleData, this.handleErrors);
+    this._http.get(`https://api.github.com/users/${username}`)
+    .subscribe(
+      data => this.handleData(data as any),
+      errors => this.handleErrors(errors as any));
   }
 
+  //called if data returned from api is valid
   handleData(data: any[]){
-    this.errors.next(null);
     this.tasks.next(data);  //success path
   }
 
-  handleErrors(error: any[]){
+  //called if api returns an error object
+  handleErrors(error: string[]){
     this.errors.next(error); //error path
-    this.tasks.next(null);
   }
-
 }
