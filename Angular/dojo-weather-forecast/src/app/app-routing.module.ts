@@ -10,7 +10,7 @@ import { SeattleComponent } from './seattle/seattle.component';
 import { LandingComponent } from './landing/landing.component';
 
 
-
+//controls routing to various city components
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'chicago', component: ChicagoComponent },
