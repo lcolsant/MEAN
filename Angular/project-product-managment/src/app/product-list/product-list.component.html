@@ -1,0 +1,10 @@
+<section>
+  <h1>Products List</h1>
+  <div class="product" *ngFor="let product of products">
+    <img src="{{product.imgUrl}}" >
+    <h3>{{product.title}}</h3>
+    <h3>{{product.price}}</h3>
+    <p><button >Edit</button></p>
+    <p><button >Delete</button></p>
+  </div>
+</section>

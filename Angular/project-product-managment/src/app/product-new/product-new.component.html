@@ -1,0 +1,18 @@
+<section>
+  <h1>Create a New Product</h1>
+  <form (submit)="create($event)" #formData="ngForm">
+    <p>
+      <label for="title">Title </label>
+      <input type="text" name="title" required [(ngModel)]="newProduct.title">
+    </p>
+    <p>
+      <label for="price">Price </label>
+      <input type="text" name="price" required [(ngModel)]="newProduct.price">
+    </p>
+    <p>
+      <label for="imageUrl">ImageUrl </label>
+      <input type="text" name="imageUrl" [(ngModel)]="newProduct.imageUrl">
+    </p>
+    <input type="submit" [disabled]="!formData.valid" value="Create">
+  </form>
+</section>

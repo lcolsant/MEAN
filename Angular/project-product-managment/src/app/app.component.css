@@ -1,0 +1,17 @@
+div.container {
+  width: 970px;
+  margin: 0 auto;
+  color: navy;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+ul li {
+  display: inline-block;
+  list-style: none;
+  margin-left: 10px;
+}
+
+
