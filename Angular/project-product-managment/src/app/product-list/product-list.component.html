@@ -4,7 +4,7 @@
     <img src="{{product.imgUrl}}" >
     <h3>{{product.title}}</h3>
     <h3>{{product.price}}</h3>
-    <p><button >Edit</button></p>
-    <p><button >Delete</button></p>
+    <p><button [routerLink]="['/products','edit',product.id]" >Edit</button></p>
+    <p><button (click)="onDelete(product)" >Delete</button></p>
   </div>
 </section>

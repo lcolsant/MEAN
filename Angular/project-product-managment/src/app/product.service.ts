@@ -7,13 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ProductService {
 
-  productsObservable: BehaviorSubject<Product[]> = new BehaviorSubject(null);
+  productsObservable: BehaviorSubject<Product[]> = new BehaviorSubject([]);
 
   constructor() { }
 
   updateProducts(products: Array<Product>){
-    console.log('got to service!');
-    console.log('in service',products);
     this.productsObservable.next(products);
   }
 }
