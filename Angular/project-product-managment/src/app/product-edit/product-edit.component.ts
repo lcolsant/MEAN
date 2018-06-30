@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Product } from '../product';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Product } from '../product';
 
 
 @Component({
@@ -25,6 +25,7 @@ export class ProductEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this._productService.productsObservable.subscribe( (products)=>{
       // this.products = products;
       for(let i=0; i<products.length; i++){
@@ -50,11 +51,17 @@ export class ProductEditComponent implements OnInit {
     });
 
   }
-  //update not working here!!!
-  update(){
-    this.products.push(this.product);
-    this._productService.updateProducts(this.products);
-    this._router.navigate(['/products']);
+
+  update($event:Event){
+    console.log('got to update');
+    event.preventDefault();
+    // this.products.push(this.product);
+    console.log('updated product:', this.product);
+    console.log('updated products array:', this.products);
+    this._productService.updateProducts(this.products);  //update not working here!!
+
+
+    // this._router.navigate(['/products']);
 
     }
   }
