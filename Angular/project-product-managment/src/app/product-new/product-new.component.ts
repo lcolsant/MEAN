@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-new.component.css']
 })
 export class ProductNewComponent implements OnInit {
-  newProduct = new Product();
-  // products:Array<Product>;
-
+  newProduct:Product = new Product();
   products:Array<Product> = [];
 
   constructor(
@@ -19,6 +17,7 @@ export class ProductNewComponent implements OnInit {
     private router: Router,
   ) {}
 
+  //subscribe upon init to bring in products array from products service
   ngOnInit() {
     this.newProduct = new Product();
     this._productService.productsObservable.subscribe( (products)=>{
@@ -27,17 +26,23 @@ export class ProductNewComponent implements OnInit {
 
   }
 
+  //create new product.
   create(){
-    if (this.newProduct.imgUrl === null ||
-        this.newProduct.imgUrl === 'null' ||
-        this.newProduct.imgUrl.length < 1) {
-   }
+
+    //Handle null image if no path provided
+    if ( this.newProduct.imgUrl === 'null' ||
+        this.newProduct.imgUrl === null ||
+        this.newProduct.imgUrl.length < 1 ) {
+        this.newProduct.imgUrl = null;
+    }
+
+
     console.log(`NewProduct: ${this.newProduct.title}`);
     this.products.push(this.newProduct);
     console.log(`products array: ${this.products}`);
     this._productService.updateProducts(this.products);
     this.newProduct = new Product();
-    this.router.navigate(['/products'])
+    this.router.navigate(['/products']);
   }
 
 }

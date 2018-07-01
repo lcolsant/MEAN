@@ -1,6 +1,6 @@
 <section>
   <h1>Create a New Product</h1>
-  <form (submit)="create()" #formData="ngForm">
+  <form (submit)="create($event)" #formData="ngForm">
     <p>
       <label for="title">Title </label>
       <input type="text" name="title" placeholder="required" required [(ngModel)]="newProduct.title">
@@ -10,8 +10,8 @@
       <input type="text" name="price" placeholder="required" required [(ngModel)]="newProduct.price">
     </p>
     <p>
-      <label for="imageUrl">ImageUrl </label>
-      <input type="text" name="imageUrl" [(ngModel)]="newProduct.imageUrl">
+      <label for="imgUrl">ImageUrl </label>
+      <input type="text" name="imgUrl" [(ngModel)]="newProduct.imgUrl">
     </p>
     <input type="submit" [disabled]="!formData.valid" value="Create" id='submitBtn'>
   </form>
