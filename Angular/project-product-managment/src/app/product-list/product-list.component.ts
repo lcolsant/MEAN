@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { ProductService } from '../product.service';
 
 
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -10,7 +11,7 @@ import { ProductService } from '../product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products:Array<Product> = [];
+products:Array<Product> = [];
 
   constructor(
     private _productService:ProductService,
@@ -23,10 +24,9 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  //find index of product in products array. Then splice product out of array
+  //send the product to delete to the deleteProduct function of the service
   onDelete(product){
     const idx = this.products.indexOf(product)
-    this.products.splice(idx,1);
-    this._productService.updateProducts(this.products);
+    this._productService.deleteProduct(idx);
   }
 }

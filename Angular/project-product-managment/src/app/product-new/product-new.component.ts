@@ -23,7 +23,6 @@ export class ProductNewComponent implements OnInit {
     this._productService.productsObservable.subscribe( (products)=>{
       this.products = products;
     })
-
   }
 
   //create new product.
@@ -38,9 +37,9 @@ export class ProductNewComponent implements OnInit {
 
 
     console.log(`NewProduct: ${this.newProduct.title}`);
-    this.products.push(this.newProduct);
     console.log(`products array: ${this.products}`);
-    this._productService.updateProducts(this.products);
+
+    this._productService.updateProducts(this.newProduct);
     this.newProduct = new Product();
     this.router.navigate(['/products']);
   }

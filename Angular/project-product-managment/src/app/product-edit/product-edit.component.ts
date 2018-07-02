@@ -38,16 +38,15 @@ export class ProductEditComponent implements OnInit {
           console.log('found matching product:', this.product.title)
           break;
         }
-
       }
     });
-
   }
 
   update(){
     console.log('updated product:', this.product);
     console.log('updated products array:', this.products);
-    this._productService.updateProducts(this.products);
+
+    this._productService.editProducts(this.products);
     this._router.navigate(['/products']);
 
     }
