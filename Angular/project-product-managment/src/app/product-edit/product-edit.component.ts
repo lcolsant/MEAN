@@ -11,11 +11,7 @@ import { Product } from '../product';
 })
 export class ProductEditComponent implements OnInit {
 
-  products:Array<Product> = [
-    // {id: 10, imgUrl:null,title:'bike',price:100},
-    // {id: 11, imgUrl:null,title:'skateboard',price:75},
-    // {id: 12, imgUrl:null,title:'skates',price:35}
-  ];
+  products:Array<Product> = [];
   product:Product;
 
   constructor(
@@ -27,15 +23,7 @@ export class ProductEditComponent implements OnInit {
   ngOnInit() {
 
     this._productService.productsObservable.subscribe( (products)=>{
-      // console.log('this is what products is -------->', products);
-      // console.log('products length:', products.length);
       this.products = products;
-      // for(let i=0; i<products.length; i++){
-      //   console.log('products.length:', products.length, 'i:', i, 'this.products', this.products);
-
-      //   this.products.push(products[i]);
-      // }
-
 
     });
 
@@ -56,12 +44,10 @@ export class ProductEditComponent implements OnInit {
 
   }
 
-  update($event:Event){
-    event.preventDefault();
+  update(){
     console.log('updated product:', this.product);
     console.log('updated products array:', this.products);
-    this._productService.updateProducts(this.products);  //update not working here!!
-
+    this._productService.updateProducts(this.products);
     this._router.navigate(['/products']);
 
     }

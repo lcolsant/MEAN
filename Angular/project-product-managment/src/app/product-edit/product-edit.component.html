@@ -1,6 +1,6 @@
 <section>
   <h1>Edit Product ID: {{product.id}}</h1>
-  <form (submit)="update($event)" #formData="ngForm">
+  <form (submit)="update()" #formData="ngForm">
     <p>
       <label for="title">Title </label>
       <input type="text" name="title" placeholder="required" required [(ngModel)]="product.title">
