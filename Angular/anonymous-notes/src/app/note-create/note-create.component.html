@@ -1,0 +1,24 @@
+
+<section>
+    <h1>Add a Note</h1>
+    <form (submit)="onSubmit($event, formData)" #formData="ngForm" >
+      <div>
+        <label for="note">Note: </label>
+        <input type="text"
+          name="note"
+          [(ngModel)]="newNote.note"
+          required
+          minlength="3"
+          #note="ngModel">
+          <button [disabled]="!formData.valid">Add Note</button>
+      </div>
+    </form>
+
+      <!-- data form validations -->
+      <div *ngIf="note.touched && note.errors">
+        <div *ngIf='note.errors.required'>You must enter a note. </div>
+        <div *ngIf='note.errors.minlength'>Note must be at least 3 characters. </div>
+      </div>
+      <!-- end validations -->
+
+  </section>

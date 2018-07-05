@@ -1,0 +1,13 @@
+
+<section>
+  <h1>Notes List</h1>
+  <!-- <fieldset *ngFor="let note of myNotes | orderby:'rating':'desc' "> -->
+  <fieldset *ngFor="let note of notes">
+    <div>
+      <p>{{note.note}}</p>
+    </div>
+    <div>
+      <button (click)="onDelete(note)">Delete</button>
+    </div>
+  </fieldset>
+</section>
