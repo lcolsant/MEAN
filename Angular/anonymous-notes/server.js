@@ -10,7 +10,7 @@ require('./server/config/database');
 app
   .use(bodyParser.urlencoded({extended: true}))
   .use(bodyParser.json())
-  .use(express.static(path.join(__dirname, 'dist')))
+  .use(express.static(path.join(__dirname, './dist/anonymous-notes')))
   .use('/api', require('./server/routes'))
   .use(require('./server/routes/catch-all.route'));
 
