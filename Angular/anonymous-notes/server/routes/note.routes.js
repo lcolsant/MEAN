@@ -5,9 +5,11 @@ const { noteController } = require('../controllers');
 
 const router = require('express').Router()
 
-module.exports = router
+router
   .get('/', noteController.index)
   .post('/', noteController.create)
-  // .get('/:note_id', noteController.show)
-  // .put('/:note_id', noteController.update)
+// .get('/:note_id', noteController.show)
+// .put('/:note_id', noteController.update)
   .delete('/:note_id', noteController.destroy)
+
+module.exports = router;

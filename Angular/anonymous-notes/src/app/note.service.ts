@@ -20,13 +20,13 @@ export class NoteService {
    }
 
   getNotes(){
-    this.http.get('/api/notes').subscribe(
+    this.http.get(this.base).subscribe(
       (note:Note[]) => { this.notesObservable.next(note)}
     );
   }
 
   addNotes(note:Note){
-    this.http.post('/api/notes', note).subscribe(
+    this.http.post(this.base, note).subscribe(
       (response) => { this.getNotes();}
     );
   }
