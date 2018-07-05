@@ -13,23 +13,22 @@ export class NoteCreateComponent implements OnInit {
   newNote:Note = new Note();
   notes:Array<Note> = [];
 
-  constructor(private noteService:NoteService) { }
+  constructor(
+    private noteService:NoteService,
+  ) { }
 
   ngOnInit() {
     this.newNote = new Note();
-    this.noteService.notesObservable.subscribe( (notes)=>{
-      this.notes = notes;
-      console.log(this.notes);
-    });
+    this.noteService.getNotes();
+
   }
 
   onSubmit(event:Event, formData:NgForm){
 
     event.preventDefault();
+    console.log('in add component', this.newNote.note)
     console.log('note submitted');
-    // console.log(this.newNote);
-    // console.log(this.notes)
-    this.noteService.addNotes(this.newNote);
+    this.noteService.addNote(this.newNote);
     this.newNote = new Note();
 
     //refresh form

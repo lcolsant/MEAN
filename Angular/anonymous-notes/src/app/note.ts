@@ -1,8 +1,7 @@
 //export Note class
 export class Note{
-
-  public _id:string;
-  public note:string = '';
+  _id:string;
+  note:string;
 
   constructor(){}
 }

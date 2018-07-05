@@ -1,14 +1,17 @@
 const Note = require('mongoose').model('Note');
 
 module.exports = {
+
   //get all of resource
-  index(req, res){
+  index(request, response){
     Note.find({})
       .then(notes => response.json(notes))
       .catch(console.log)
   },
+
   // create resource
-  create(req, res){
+  create(request, response){
+    console.log('in controller...', request.body)
     Note.create(request.body)
       .then(note => response.json(note))
       .catch(error => {
@@ -19,12 +22,8 @@ module.exports = {
           );
       })
   },
-  // // get a single resource
-  // show(req, res){},
-  // // update a resource
-  // update(req, res){},
-  // destroy a resource
-  destroy(req, res){
+
+  destroy(request, response){
     Note.findByIdAndRemove(request.params.note_id)
       .then(note => response.json(note))
       .catch(console.log);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../note';
 import { NoteService } from '../note.service';
+// import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,13 +17,15 @@ export class NoteListComponent implements OnInit {
   constructor(private noteService:NoteService) { }
 
   ngOnInit() {
-    this.noteService.notesObservable.subscribe( (notes)=>{
+    this.noteService.getNotes().subscribe(notes => {
       this.notes = notes;
+      console.log('received from api',this.notes);
     })
+
   }
 
-  onDelete(note:Note){
-    const idx = this.notes.indexOf(note);
-    this.noteService.deleteNote(idx);
-  }
+  // onDelete(note:Note){
+  //   const idx = this.notes.indexOf(note);
+  //   this.noteService.deleteNote(idx);
+  // }
 }
