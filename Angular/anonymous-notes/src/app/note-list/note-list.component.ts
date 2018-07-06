@@ -24,8 +24,9 @@ export class NoteListComponent implements OnInit {
 
   }
 
-  // onDelete(note:Note){
-  //   const idx = this.notes.indexOf(note);
-  //   this.noteService.deleteNote(idx);
-  // }
+  onDelete(note:Note){
+    this.noteService.deleteNote(note).subscribe(notes=>{
+      console.log('deleted note:', note);
+    });
+  }
 }

@@ -19,7 +19,6 @@ export class NoteService {
   }
 
   addNote(note:Note): Observable<Note>{
-    console.log('in service..adding..', note );
     return this.http.post<Note>(this.base, note);
   }
 

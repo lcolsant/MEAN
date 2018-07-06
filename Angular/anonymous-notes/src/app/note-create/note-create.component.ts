@@ -26,9 +26,14 @@ export class NoteCreateComponent implements OnInit {
   onSubmit(event:Event, formData:NgForm){
 
     event.preventDefault();
-    console.log('in add component', this.newNote.note)
+
     console.log('note submitted');
-    this.noteService.addNote(this.newNote);
+
+    this.noteService.addNote(this.newNote).subscribe(note=>{
+      this.notes.push(note);
+    });
+
+    console.log(this.notes);
     this.newNote = new Note();
 
     //refresh form
