@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Note } from '../note';
 import { NoteService } from '../note.service';
@@ -15,6 +16,7 @@ export class NoteCreateComponent implements OnInit {
 
   constructor(
     private noteService:NoteService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class NoteCreateComponent implements OnInit {
 
     this.noteService.addNote(this.newNote).subscribe(note=>{
       this.notes.push(note);
+      this.noteService.getNotes();
     });
 
     console.log(this.notes);
@@ -38,6 +41,8 @@ export class NoteCreateComponent implements OnInit {
 
     //refresh form
     formData.reset();
+
+    this.router.navigateByUrl('/');
 
   }
 

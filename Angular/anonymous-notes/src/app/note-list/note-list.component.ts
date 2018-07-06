@@ -27,6 +27,10 @@ export class NoteListComponent implements OnInit {
   onDelete(note:Note){
     this.noteService.deleteNote(note).subscribe(notes=>{
       console.log('deleted note:', note);
+
+      this.noteService.getNotes().subscribe(notes =>{
+        this.notes = notes});
+
     });
-  }
+  };
 }

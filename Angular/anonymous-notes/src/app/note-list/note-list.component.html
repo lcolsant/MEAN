@@ -4,7 +4,7 @@
   <!-- <fieldset *ngFor="let note of myNotes | orderby:'rating':'desc' "> -->
   <fieldset *ngFor="let note of notes">
     <div>
-      <p>{{note.note}} - {{note.createdAt | date: "short" }}</p>
+      <p>{{note.note}} - Noted on: {{note.createdAt | date: "short" }}</p>
     </div>
     <div>
       <button (click)="onDelete(note)">Delete</button>
