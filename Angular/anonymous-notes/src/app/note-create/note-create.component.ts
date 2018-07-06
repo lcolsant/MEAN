@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Note } from '../note';
@@ -10,6 +10,8 @@ import { NoteService } from '../note.service';
   styleUrls: ['./note-create.component.css']
 })
 export class NoteCreateComponent implements OnInit {
+
+  @Output() emitNote = new EventEmitter();
 
   newNote:Note = new Note();
   notes:Array<Note> = [];
@@ -30,6 +32,7 @@ export class NoteCreateComponent implements OnInit {
     event.preventDefault();
 
     console.log('note submitted');
+    this.emitNote.emit(this.newNote);
 
     this.noteService.addNote(this.newNote).subscribe(note=>{
       this.notes.push(note);
@@ -41,8 +44,6 @@ export class NoteCreateComponent implements OnInit {
 
     //refresh form
     formData.reset();
-
-    this.router.navigateByUrl('/');
 
   }
 

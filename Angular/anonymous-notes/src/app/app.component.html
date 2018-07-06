@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Anonymous Notes</h1>
-  <!-- <app-note-create></app-note-create> -->
-  <!-- <app-note-list></app-note-list> -->
-  <router-outlet></router-outlet>
+  <app-note-create (emitNote)="passingNote($event)"></app-note-create>
+  <app-note-list [myNewNote]='newNotes'></app-note-list>
+  <!-- <router-outlet></router-outlet> -->
 </div>
