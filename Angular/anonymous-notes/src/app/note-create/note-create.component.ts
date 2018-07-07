@@ -32,6 +32,7 @@ export class NoteCreateComponent implements OnInit {
     event.preventDefault();
 
     console.log('note submitted');
+
     this.emitNote.emit(this.newNote);
 
     this.noteService.addNote(this.newNote).subscribe(note=>{

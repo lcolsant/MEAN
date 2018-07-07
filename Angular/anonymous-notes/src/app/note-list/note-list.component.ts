@@ -11,14 +11,11 @@ import { NoteService } from '../note.service';
 })
 export class NoteListComponent implements OnInit {
 
-  @Input() myNewNote;
+  @Input() myNewNotes:Note[];
   notes:Array<Note> = [];
 
   constructor(private noteService:NoteService) { }
 
-  passingNote(eventData){
-    console.log(eventData);
-  }
   ngOnInit() {
     this.noteService.getNotes().subscribe(notes => {
       this.notes = notes;
