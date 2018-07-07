@@ -1,11 +1,7 @@
 
 <section>
-  <!-- test @input here: -->
-  {{myNewNotes}}
-  <!-- end test @input -->
   <h1>Notes List</h1>
-  <!-- <fieldset *ngFor="let note of myNotes | orderby:'rating':'desc' "> -->
-  <fieldset *ngFor="let note of notes">
+  <fieldset *ngFor="let note of myNewNotes | orderby: 'createdAt':'desc' ">
     <div>
       <p>{{note.note}} - Noted on: {{note.createdAt | date: "short" }}</p>
     </div>

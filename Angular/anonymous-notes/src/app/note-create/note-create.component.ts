@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Note } from '../note';
 import { NoteService } from '../note.service';
@@ -11,39 +10,26 @@ import { NoteService } from '../note.service';
 })
 export class NoteCreateComponent implements OnInit {
 
-  @Output() emitNote = new EventEmitter();
+  @Output() emitEvent = new EventEmitter();
 
   newNote:Note = new Note();
-  notes:Array<Note> = [];
 
-  constructor(
-    private noteService:NoteService,
-    private router: Router
-  ) { }
+  constructor(private noteService:NoteService) { }
 
   ngOnInit() {
     this.newNote = new Note();
-    this.noteService.getNotes();
-
   }
 
   onSubmit(event:Event, formData:NgForm){
 
     event.preventDefault();
 
-    console.log('note submitted');
-
-    this.emitNote.emit(this.newNote);
-
     this.noteService.addNote(this.newNote).subscribe(note=>{
-      this.notes.push(note);
-      this.noteService.getNotes();
+      this.emitEvent.emit();
     });
 
-    console.log(this.notes);
     this.newNote = new Note();
 
-    //refresh form
     formData.reset();
 
   }
