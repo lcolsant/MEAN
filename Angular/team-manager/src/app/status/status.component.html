@@ -1,0 +1,48 @@
+<section>
+  <h2>Player Status - Game {{gameId}}</h2>
+  <ul>
+    <li>
+      <a [routerLink]="['/status','game','1']">Game 1</a>
+    </li>
+    <li>|</li>
+    <li>
+      <a [routerLink]="['/status','game','2']">Game 2</a>
+    </li>
+    <li>|</li>
+    <li>
+      <a [routerLink]="['/status','game','3']">Game 3</a>
+    </li>
+  </ul>
+</section>
+<section>
+    <table class="table table-striped">
+        <thead>
+          <th>Player</th>
+          <th>Position</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr *ngFor='let player of players'>
+            <td>{{ player.name }}</td>
+            <td>{{ player.position }}</td>
+            <td>
+              <div *ngIf='gameId == 1'>
+                <button [ngClass]="{'btn-green': player.statusGameOne === 'playing'}" (click)="setGameStatus(player._id, 'playing')">Playing</button>
+                <button [ngClass]="{'btn-red': player.statusGameOne === 'not playing'}" (click)="setGameStatus(player._id, 'not playing')">Not Playing</button>
+                <button [ngClass]="{'btn-yellow': player.statusGameOne === 'undecided'}" (click)="setGameStatus(player._id, 'undecided')">Undecided</button>
+              </div>
+              <div *ngIf='gameId == 2'>
+                <button [ngClass]="{'btn-green': player.statusGameTwo === 'playing'}" (click)="setGameStatus(player._id, 'playing')">Playing</button>
+                <button [ngClass]="{'btn-red': player.statusGameTwo === 'not playing'}" (click)="setGameStatus(player._id, 'not playing')">Not Playing</button>
+                <button [ngClass]="{'btn-yellow': player.statusGameTwo === 'undecided'}" (click)="setGameStatus(player._id, 'undecided')">Undecided</button>
+              </div>
+              <div *ngIf='gameId == 3'>
+                <button [ngClass]="{'btn-green': player.statusGameThree === 'playing'}" (click)="setGameStatus(player._id, 'playing')">Playing</button>
+                <button [ngClass]="{'btn-red': player.statusGameThree === 'not playing'}" (click)="setGameStatus(player._id, 'not playing')">Not Playing</button>
+                <button [ngClass]="{'btn-yellow': player.statusGameThree === 'undecided'}" (click)="setGameStatus(player._id, 'undecided')">Undecided</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</section>

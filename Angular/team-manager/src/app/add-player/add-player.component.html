@@ -1,0 +1,39 @@
+<section>
+  <ul>
+    <li>
+      <a [routerLink]="['/players', 'list']">List</a>
+    </li>
+    <li>|</li>
+    <li>
+      <a [routerLink]="['/players', 'addplayer']">Add Player</a>
+    </li>
+  </ul>
+
+  <h3>Add a player:</h3>
+  <form (submit)="onAdd($event, formData)" #formData="ngForm" >
+    <div>
+      <label for="name">Player Name: </label>
+      <input type="text"
+        name="name"
+        [(ngModel)]="newPlayer.name"
+        required
+        minlength="3"
+        #name="ngModel">
+    </div>
+    <div>
+      <label for="position">Positition: </label>
+      <input type="text"
+        name="position"
+        [(ngModel)]="newPlayer.position"
+        #position="ngModel">
+    </div>
+      <button [disabled]="!formData.valid">Add Player</button>
+  </form>
+
+    <!-- data form validations -->
+    <div *ngIf="name.touched && name.errors">
+      <div *ngIf='name.errors.required'>You must enter a name. </div>
+      <div *ngIf='name.errors.minlength'>Player name must be at least 3 characters. </div>
+    </div>
+    <!-- end validations -->
+</section>
