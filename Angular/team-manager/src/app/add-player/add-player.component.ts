@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Player } from '../player';
-import { NgForm } from '@angular/forms';
+import { PlayerService } from '../player.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -8,44 +10,34 @@ import { NgForm } from '@angular/forms';
   templateUrl: './add-player.component.html',
   styleUrls: ['./add-player.component.css']
 })
-export class AddPlayerComponent implements OnInit {
+export class AddPlayerComponent implements OnInit, OnDestroy {
 
+  sub:Subscription;
   newPlayer:Player = new Player();
+  players:Array<Player> = []
 
-  players:Array<Player> = [
-    {
-      _id:"1",
-      name:"Neymar",
-      position:"forward",
-      statusGameOne:"playing",
-      statusGameTwo:"playing",
-      statusGameThree:"not playing",
-    },
-    {
-      _id:"2",
-      name:"Coutinho",
-      position:"mid-fielder",
-      statusGameOne:"playing",
-      statusGameTwo:"undecided",
-      statusGameThree:"playing",
-    },
-  ]
-
-  constructor() { }
+  constructor(
+    private playerService:PlayerService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
   }
 
-  onAdd(event, formData:NgForm){
+  ngOnDestroy(){
+    if(this.sub){
+      this.sub.unsubscribe();
+    }
+  }
+
+  onAdd(event){
 
     event.preventDefault;
-    //add to db here
 
-    this.players.push(this.newPlayer);
-    console.log('successfully added player:', this.newPlayer);
-    this.newPlayer = new Player();
-
-    formData.reset();
+    this.sub = this.playerService.addPlayer(this.newPlayer).subscribe(player=>{
+      console.log('player from api:', player);
+      this.router.navigateByUrl('/');
+    });
   }
 
 }

@@ -6,20 +6,21 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { PlayersComponent } from './players/players.component';
 import { StatusComponent } from './status/status.component';
 import { AddPlayerComponent } from './add-player/add-player.component';
 
 import { PlayerService } from './player.service';
 
+import { TitleizePipe } from './titleize.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     PlayersComponent,
     StatusComponent,
-    AddPlayerComponent
+    AddPlayerComponent,
+    TitleizePipe,
   ],
   imports: [
     BrowserModule,

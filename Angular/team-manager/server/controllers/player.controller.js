@@ -10,6 +10,13 @@ module.exports = {
       .catch(console.log)
   },
 
+  //get single resource
+  show(request, response) {
+    Player.findById(request.params.player_id)
+      .then(player => response.json(player))
+      .catch(console.log);
+  },
+
   // create resource
   create(request, response){
     console.log('in controller...', request.body)
@@ -23,13 +30,15 @@ module.exports = {
           );
       })
   },
-  //need update route here....
+
+  //update resource
   update(request, response) {
     Player.findByIdAndUpdate(request.params.player_id, request.body, { new: true })
       .then(player => response.json(player))
       .catch(console.log);
   },
 
+  //delete resource
   destroy(request, response){
     Player.findByIdAndRemove(request.params.player_id)
       .then(player => response.json(player))

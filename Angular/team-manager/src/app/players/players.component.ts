@@ -1,41 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { Player } from '../player';
+import { TitleizePipe } from '../titleize.pipe';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
-  styleUrls: ['./players.component.css']
+  styleUrls: ['./players.component.css'],
+  providers:[TitleizePipe],
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent implements OnInit, OnDestroy {
 
-  players:Array<Player> = [
-    {
-      _id:"1",
-      name:"Neymar",
-      position:"forward",
-      statusGameOne:"playing",
-      statusGameTwo:"playing",
-      statusGameThree:"not playing",
-    },
-    {
-      _id:"2",
-      name:"Coutinho",
-      position:"mid-fielder",
-      statusGameOne:"playing",
-      statusGameTwo:"undecided",
-      statusGameThree:"playing",
-    },
-  ]
+  players:Array<Player> = []
+  sub: Subscription;
 
-  constructor(private playerService: PlayerService ) { }
+  constructor(
+    private playerService: PlayerService,
+    private titleize: TitleizePipe,
+
+  ) { }
 
   ngOnInit() {
+
+      this.sub = this.playerService.getPlayers().subscribe(players => {
+      this.players = players;
+      this.players.forEach(player => {
+        player.name = this.titleize.transform(player.name);
+        player.position = this.titleize.transform(player.position);
+      });
+    });
+  }
+
+  ngOnDestroy(){
+    if(this.sub){
+      this.sub.unsubscribe();
+    }
   }
 
 
-  onDelete(player:Player){
-    console.log('deleting player', player);
+  onDelete(playerToDelete:Player){
+    console.log(playerToDelete);
+    this.sub = this.playerService.deletePlayer(playerToDelete).subscribe(deletedPlayer => {
+      console.log('removed player:', deletedPlayer);
+      this.players = this.players.filter(player => player._id !== deletedPlayer._id);
+    });
   }
 
 }
