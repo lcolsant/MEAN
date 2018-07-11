@@ -56,11 +56,12 @@ export class BicycleModifyComponent implements OnInit {
 
   }
 
-  onUpdate(bicycle:Bicycle){
-    event.preventDefault;
-    console.log('Updating bicycle: ', bicycle.title);
-    this.bicycle = bicycle;
-
+  onUpdate(event:Event, form:NgForm){
+    event.preventDefault();
+    console.log('Updating bicycle: ', this.bicycle);
+    console.log(form.value);
+    console.log(form.value.title);
+    console.log(form.value._id);
   }
 
   onClick(event: Event) {

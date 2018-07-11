@@ -90,6 +90,7 @@
   <h3>My Listings:</h3>
   <div class="row" *ngFor='let bicycle of bicycles' >
       <form (submit)="onUpdate($event, formUpdate)" #formUpdate="ngForm" >
+        <input type="hidden" name="_id" [(ngModel)]="bicycle._id">
         <div class="pic">
           <div>
             <label for="img">Image Path: </label>
@@ -114,7 +115,7 @@
           <div>
            <h1><label for="description">Description: </label></h1>
           <input type="text"
-            name="position"
+            name="description"
             [(ngModel)]="bicycle.description"
             #description="ngModel">
           </div>
@@ -141,9 +142,9 @@
                 #location="ngModel">
             </div>
           </div>
-          <button class="btn-green" [disabled]="!formUpdate.valid" (click)="onUpdate(bicycle)">Update</button>
+          <button class="btn-green" [disabled]="!formUpdate.valid" >Update</button>
           <div (click)='onClick($event)'>
-            <button class="btn-red" (click)="onDelete(bicycle)">Delete</button>
+            <button type='button' class="btn-red" (click)="onDelete(bicycle)">Delete</button>
           </div>
         </div>   <!--end div.right-->
       </form>
