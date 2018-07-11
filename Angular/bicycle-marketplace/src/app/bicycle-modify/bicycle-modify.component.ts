@@ -63,6 +63,11 @@ export class BicycleModifyComponent implements OnInit {
 
   }
 
+  onClick(event: Event) {
+    event.stopPropagation();
+    console.log('stopping prop', event);
+  }
+
 
 
 }

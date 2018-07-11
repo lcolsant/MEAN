@@ -18,6 +18,62 @@ div.container {
   color: #1b4d86;
 }
 
+div.row {
+  width: 968px;
+  border: 1px solid #1b4d86;
+  /* height: 230px; */
+  display: inline-block;
+  text-align: left;
+  margin-top: 10px;
+  /* vertical-align: top; */
+}
+
+div.pic {
+  width: 300px;
+  /* border: 1px solid #1b4d86; */
+  /* height: 225px; */
+  display: inline-block;
+  vertical-align: top;
+
+}
+div.middle {
+  width: 470px;
+  /* border: 1px solid #1b4d86; */
+  height: 225px;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 10px;
+
+}
+div.right {
+  width: 180px;
+  /* border: 1px solid #1b4d86; */
+  /* height: 225px; */
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+
+}
+div.price {
+  width: 178px;
+  /* border: 1px solid #1b4d86; */
+  height: 90px;
+  display: block;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+div.location {
+  width: 178px;
+  /* border: 1px solid #1b4d86; */
+  height: 55px;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+
+}
+
+
 ul li {
   list-style: none;
   display: inline-block;
@@ -25,31 +81,18 @@ ul li {
 
 }
 
-
-table {
-  border: 1px solid black;
-}
-tr:nth-child(even) {
-  background-color: #CCC;
-}
-
-tr:nth-child(odd) {
-  background-color: #FFF;
-}
-td{
-  width: 300px;
-}
-
-th {
-  text-align: left;
-}
-
 .btn-red {
   background-color: darkred;
   color: white;
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
 }
 
 .btn-green {
   background-color: darkgreen;
   color: white;
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
 }

@@ -17,7 +17,7 @@
   </div>
 
 <h3>List of available bicycles:</h3>
-<table>
+<!-- <table>
   <thead>
     <th>Image</th>
     <th>Title</th>
@@ -37,4 +37,17 @@
     </td>
   </tr>
  </tbody>
-</table>
+</table> -->
+
+<div class="row" *ngFor='let bicycle of bicycles'>
+  <div class="pic"><img src="{{ bicycle.img }}" ></div>
+  <div class="middle">
+    <h1>{{ bicycle.title }}</h1>
+    <p>{{ bicycle.description }}</p>
+  </div>
+  <div class="right">
+    <div class="price">${{ bicycle.price }}</div>
+    <div class="location">{{ bicycle.location }}</div>
+    <button class="btn-green">Submit</button>
+  </div>
+</div>
