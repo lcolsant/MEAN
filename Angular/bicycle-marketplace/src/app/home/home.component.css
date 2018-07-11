@@ -1,0 +1,21 @@
+
+*{
+  margin:0;
+  padding:0;
+}
+
+
+
+div.container {
+  width: 970px;
+  margin: 0 auto;
+  text-align: center;
+  color: #1b4d86;
+}
+
+ul li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 10px;
+
+}

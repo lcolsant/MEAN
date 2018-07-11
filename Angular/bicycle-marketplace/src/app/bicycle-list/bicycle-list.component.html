@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Bicycle MarketPlace</h1>
+    <ul>
+      <li>
+        <a [routerLink]="['/browse']">Browse</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a [routerLink]="['/listings']">My Listings</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a [routerLink]="['/']">Log Out</a>
+      </li>
+    </ul>
+    <router-outlet></router-outlet>
+  </div>
+
+<h3>List of available bicycles:</h3>
+<table>
+  <thead>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Location</th>
+ </thead>
+ <tbody>
+  <tr *ngFor='let bicycle of bicycles'>
+    <td><img src="{{ bicycle.img }}" ></td>
+    <td>{{ bicycle.title }}</td>
+    <td>{{ bicycle.description }}</td>
+    <td>{{ bicycle.price }}</td>
+    <td>{{ bicycle.location }}</td>
+    <td>
+      <button class="btn-red" (click)='onDelete(bicycle)'>DELETE</button>
+    </td>
+  </tr>
+ </tbody>
+</table>

@@ -1,0 +1,130 @@
+<div class="container">
+    <h1>Bicycle MarketPlace</h1>
+    <ul>
+      <li>
+        <a [routerLink]="['/browse']">Browse</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a [routerLink]="['/listings']">My Listings</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a [routerLink]="['/']">Log Out</a>
+      </li>
+    </ul>
+    <router-outlet></router-outlet>
+  </div>
+
+<h3>Add a bicycle:</h3>
+<form (submit)="onAdd($event, formData)" #formData="ngForm" >
+  <div>
+    <label for="title">Title: </label>
+    <input type="text"
+      name="title"
+      [(ngModel)]="bicycle.title"
+      required
+      minlength="3"
+      #title="ngModel">
+  </div>
+  <div>
+    <label for="description">Description: </label>
+    <input type="text"
+      name="position"
+      [(ngModel)]="bicycle.description"
+      #description="ngModel">
+  </div>
+  <div>
+    <label for="price">Price: </label>
+    <input type="text"
+      name="price"
+      [(ngModel)]="bicycle.price"
+      required
+      #price="ngModel">
+  </div>
+  <div>
+    <label for="location">Location: </label>
+    <input type="text"
+      name="location"
+      [(ngModel)]="bicycle.location"
+      required
+      minlength="3"
+      #location="ngModel">
+  </div>
+  <div>
+    <label for="img">Image Path: </label>
+    <input type="text"
+      name="img"
+      [(ngModel)]="bicycle.img"
+      #img="ngModel">
+  </div>
+    <button [disabled]="!formData.valid">Add Bicycle</button>
+</form>
+
+  <!-- data form validations -->
+  <div *ngIf="title.touched && title.errors">
+    <div *ngIf='title.errors.required'>You must enter a title. </div>
+    <div *ngIf='title.errors.minlength'>Title must be at least 3 characters. </div>
+  </div>
+  <div *ngIf="location.touched && location.errors">
+    <div *ngIf='location.errors.required'>You must enter a location. </div>
+    <div *ngIf='location.errors.minlength'>Location must be at least 3 characters. </div>
+  </div>
+  <div *ngIf="price.touched && price.errors">
+    <div *ngIf='price.errors.required'>You must enter a price. </div>
+  </div>
+  <!-- end validations -->
+
+
+  <h3>My Listings:</h3>
+
+  <table>
+    <thead>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Location</th>
+      <th>Update/Delete</th>
+    </thead>
+    <tbody>
+      <tr *ngFor='let bicycle of bicycles'>
+        <form (submit)="onUpdate($event, formUpdate)" #formUpdate="ngForm">
+           <td> <input type="text" name="img" value="{{ bicycle.img }}" [(ngModel)]="bicycle.img"  > </td>
+           <td><input type="text" name="title" value="{{ bicycle.title }}" [(ngModel)]="bicycle.title" > </td>
+           <td><input type="text" name="description" value="{{ bicycle.description }}" [(ngModel)]="bicycle.description"></td>
+           <td><input type="text" name="price" value="{{ bicycle.price }}" [(ngModel)]="bicycle.price"></td>
+           <td><input type="text" name="location" value="{{bicycle.location }}" [(ngModel)]="bicycle.location"></td>
+           <td>
+             <p><button class="btn-red" (click)='onDelete(bicycle)'>DELETE</button></p>
+             <!-- <p><button class="btn-green" (click)='onUpdate(bicycle)'>UPDATE</button></p> -->
+             <p><button class="btn-green" >UPDATE</button></p>
+          </td>
+        </form>
+      </tr>
+    </tbody>
+  </table>
+
+
+<h3>List of available bicycles:</h3>
+<table>
+  <thead>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Location</th>
+ </thead>
+ <tbody>
+  <tr *ngFor='let bicycle of bicycles'>
+    <td><img src="{{ bicycle.img }}" ></td>
+    <td>{{ bicycle.title }}</td>
+    <td>{{ bicycle.description }}</td>
+    <td>{{ bicycle.price }}</td>
+    <td>{{ bicycle.location }}</td>
+    <td>
+      <button class="btn-red" (click)='onDelete(bicycle)'>DELETE</button>
+    </td>
+  </tr>
+ </tbody>
+</table>
