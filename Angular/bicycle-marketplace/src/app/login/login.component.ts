@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { User } from '../user';
+
 
 
 @Component({
@@ -9,23 +12,31 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  user = {
-    email:"",
-    password:"",
+  user: User = new User();
 
-  }
+  // user = {
+  //   email:"",
+  //   password:"",
+
+  // }
 
   constructor(
     private router: Router,
+    private auth: AuthService,
 
   ) { }
 
   ngOnInit() {
   }
 
-  login(){
-    console.log('log in successful...');
-    this.router.navigateByUrl('browse');
+  login(user:User){
+    console.log('loggin in user...', user);
+
+    this.auth.login(user).subscribe(user=>{
+      console.log('from api...log in successful.',user);
+      this.router.navigateByUrl('browse');
+
+    })
   }
 
 }

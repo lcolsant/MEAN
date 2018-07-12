@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { CookieModule } from 'ngx-cookie';
 
 
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { BicycleModifyComponent } from './bicycle-modify/bicycle-modify.componen
 import { HomeComponent } from './home/home.component';
 
 import { BicycleService } from './bicycle.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { BicycleService } from './bicycle.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    CookieModule.forRoot(),
 
   ],
-  providers: [BicycleService],
+  providers: [BicycleService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
