@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bicycle } from '../bicycle';
+import { BicycleService } from '../bicycle.service';
 
 @Component({
   selector: 'app-bicycle-list',
@@ -9,39 +10,44 @@ import { Bicycle } from '../bicycle';
 export class BicycleListComponent implements OnInit {
 
   bicycles:Array<Bicycle> = [
-    {
-      _id:"1",
-      title:"Trek Domane",
-      description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-      price:"799",
-      location:"San Jose",
-      img:"../../assets/bike1.jpeg",
-    },
-    {
-      _id:"2",
-      title:"GT Aggressor Pro ",
-      description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-      price:"399",
-      location:"Santa Cruz",
-      img:"../../assets/bike2.jpeg",
-    },
-    {
-      _id:"3",
-      title:"Schwinn Cruiser",
-      description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-      price:"100",
-      location:"San Francisco",
-      img:"../../assets/bike4.jpeg",
-    },
+    // {
+    //   _id:"1",
+    //   title:"Trek Domane",
+    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+    //   price:"799",
+    //   location:"San Jose",
+    //   img:"../../assets/bike1.jpeg",
+    // },
+    // {
+    //   _id:"2",
+    //   title:"GT Aggressor Pro ",
+    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+    //   price:"399",
+    //   location:"Santa Cruz",
+    //   img:"../../assets/bike2.jpeg",
+    // },
+    // {
+    //   _id:"3",
+    //   title:"Schwinn Cruiser",
+    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+    //   price:"100",
+    //   location:"San Francisco",
+    //   img:"../../assets/bike4.jpeg",
+    // },
   ];
 
-  constructor() { }
+  constructor(
+    private bicycleService:BicycleService,
+  ) { }
 
   ngOnInit() {
+    this.bicycleService.getBicycles().subscribe(bicycles=>{
+      this.bicycles = bicycles;
+    });
   }
 
-  onDelete(bicycle:Bicycle){
-    console.log('deleting bicycle', bicycle.title);
-  }
+  // onDelete(bicycle:Bicycle){
+  //   console.log('deleting bicycle', bicycle.title);
+  // }
 
 }

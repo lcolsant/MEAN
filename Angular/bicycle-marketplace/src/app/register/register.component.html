@@ -1,3 +1,35 @@
-<p>
-  register works!
-</p>
+<h3>Registration:</h3>
+<form (submit)="register($event, formData)" #formReg="ngForm" >
+  <div>
+    <label for="name">Name: </label>
+    <input type="text"
+      name="name"
+      [(ngModel)]="user.name"
+      required
+      minlength="3"
+      #name="ngModel">
+  </div>
+  <div>
+    <label for="email">Email: </label>
+    <input type="text"
+      name="email"
+      [(ngModel)]="user.email"
+      required
+      minlength="3"
+      #name="ngModel">
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <input type="password"
+      name="password"
+      [(ngModel)]="user.password"
+      #position="ngModel">
+  </div>
+    <button [disabled]="!formReg.valid">Register</button>
+</form>
+<!-- data form validations -->
+<div *ngIf="name.touched && name.errors">
+    <div *ngIf='name.errors.required'>You must enter a name. </div>
+    <div *ngIf='name.errors.minlength'>Player name must be at least 3 characters. </div>
+</div>
+  <!-- end validations -->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,27 +8,27 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  user = {
-    name:"",
-    password:"",
+  // user = {
+  //   name:"",
+  //   password:"",
 
-  }
+  // }
   constructor(
-    private router: Router,
+    // private router: Router,
   ) { }
 
   ngOnInit() {
   }
 
-  login(){
-    console.log('log in successful...');
-    this.router.navigateByUrl('browse');
-  }
+  // login(){
+  //   console.log('log in successful...');
+  //   this.router.navigateByUrl('browse');
+  // }
 
-  register(){
-    console.log('register successful...');
-    this.router.navigateByUrl('browse');
+  // register(){
+  //   console.log('register successful...');
+  //   this.router.navigateByUrl('browse');
 
-  }
+  // }
 
 }
