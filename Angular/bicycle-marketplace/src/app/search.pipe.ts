@@ -10,7 +10,7 @@ export class SearchPipe implements PipeTransform {
 
   transform<T extends object>(elements: T[], filter: T): Array<T> {
 
-    console.log('searching', elements, filter);
+    // console.log('searching', elements, filter);
     // if undefined or null just return all elements
     if (!elements || !filter) {
       return elements;
@@ -21,8 +21,8 @@ export class SearchPipe implements PipeTransform {
 
   private applyFilter<T>(element: T, filter: T): boolean {
 
-    console.log('bicycle', element);
-    console.log('filter', filter);
+    // console.log('bicycle', element);
+    // console.log('filter', filter);
 
     for (const field in filter) {
 

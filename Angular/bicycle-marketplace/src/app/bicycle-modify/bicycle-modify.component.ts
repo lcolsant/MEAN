@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { BicycleService } from '../bicycle.service';
 
 import { AuthService } from '../auth.service';
+import { CookieService } from 'ngx-cookie'
 import { Router } from '@angular/router';
 
 
@@ -22,6 +23,7 @@ export class BicycleModifyComponent implements OnInit {
     private bicycleService:BicycleService,
     private authService:AuthService,
     private readonly router: Router,
+    private cookieService: CookieService,
 
   ) { }
 
@@ -30,15 +32,13 @@ export class BicycleModifyComponent implements OnInit {
       this.bicycles = bicycles;
     });
 
-    this.authService.sessionID$.subscribe(sessionID =>{
-      console.log('in modify...', sessionID);
-      this.owner_id = sessionID;
-    })
+    // this.authService.sessionID$.subscribe(sessionID =>{
+    //   console.log('in modify...', sessionID);
+    //   this.owner_id = sessionID;
+    // })
+    this.owner_id = this.cookieService.get('userID');
+    console.log('in modify showing ownerID', this.owner_id);
 
-    // this.authService.sessionID$.subscribe(owner_id=>{
-    //   this.owner_id = owner_id;
-    //   console.log('in modify...', this.owner_id);
-    // });
 
   }
 

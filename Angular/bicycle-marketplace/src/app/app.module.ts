@@ -18,6 +18,8 @@ import { AuthService } from './auth.service';
 
 import { AuthGuard } from './auth.guard';
 import { SearchPipe } from './search.pipe';
+import { LandingComponent } from './landing/landing.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { SearchPipe } from './search.pipe';
     BicycleListComponent,
     BicycleModifyComponent,
     HomeComponent,
-    SearchPipe
+    SearchPipe,
+    LandingComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

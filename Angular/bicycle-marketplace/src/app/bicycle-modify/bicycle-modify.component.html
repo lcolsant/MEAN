@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <h1>Bicycle MarketPlace</h1>
     <ul>
       <li>
@@ -10,20 +10,22 @@
       </li>
       <li>|</li>
       <li>
-        <button (click)=logout()>Log Out</button>
+        <button (click)=logout()>Log Out</button> -->
         <!-- <a [routerLink]="['/']">Log Out</a> -->
         <!-- <a href="#" onClick="logout()">Log Out</a> -->
 
-      </li>
+      <!-- </li>
     </ul>
     <router-outlet></router-outlet>
-  </div>
+  </div> -->
+  <app-nav></app-nav>
 
 <h3>Add a bicycle:</h3>
+{{owner_id}}
 {{formAdd.value | json }}
 <div class="row" >
   <form (submit)="onAdd($event, formAdd)" #formAdd="ngForm" >
-    <input type="hidden" name="owner_id" value="{{owner_id}}" [(ngModel)]="bicycle.owner_id">
+    <input type="hidden" name="owner_id" value={{owner_id}} [(ngModel)]="bicycle.owner_id">
     <div class="pic">
       <div>
         <h1><label for="img">Image Path: </label></h1>
