@@ -1,41 +1,21 @@
-<!-- <div class="container">
-    <h1>Bicycle MarketPlace</h1>
-    <ul>
-      <li>
-        <a [routerLink]="['/browse']">Browse</a>
-      </li>
-      <li>|</li>
-      <li>
-        <a [routerLink]="['/listings']">My Listings</a>
-      </li>
-      <li>|</li>
-      <li>
-        <button (click)=logout()>Log Out</button> -->
-        <!-- <a [routerLink]="['/']">Log Out</a> -->
-        <!-- <a href="#" onClick="logout()">Log Out</a> -->
-
-      <!-- </li>
-    </ul>
-    <router-outlet></router-outlet>
-  </div> -->
+<section>
   <app-nav></app-nav>
-
-<h3>Add a bicycle:</h3>
-{{owner_id}}
-{{formAdd.value | json }}
-<div class="row" >
-  <form (submit)="onAdd($event, formAdd)" #formAdd="ngForm" >
-    <input type="hidden" name="owner_id" value={{owner_id}} [(ngModel)]="bicycle.owner_id">
-    <div class="pic">
-      <div>
-        <h1><label for="img">Image Path: </label></h1>
-        <input type="text"
+  <h3>Add a bicycle:</h3>
+  <!-- {{owner_id}} -->
+  <!-- {{formAdd.value | json }} -->
+  <div class="row" >
+    <form (submit)="onAdd($event, formAdd)" #formAdd="ngForm" >
+      <!-- <input type="hidden" name="owner_id" value={{owner_id}} [(ngModel)]="bicycle.owner_id"> -->
+      <div class="pic">
+        <div>
+          <h1><label for="img">Image Path: </label></h1>
+          <input type="text"
           name="img"
           [(ngModel)]="bicycle.img"
           #img="ngModel">
+        </div>
       </div>
-    </div>
-    <div class="middle">
+      <div class="middle">
       <h1>Title:</h1>
       <div><input type="text"
         name="title"
@@ -45,8 +25,8 @@
         #title="ngModel">
       </div>
       <div>
-       <h1><label for="description">Description: </label></h1>
-      <input type="text"
+        <h1><label for="description">Description: </label></h1>
+        <input type="text"
         name="description"
         [(ngModel)]="bicycle.description"
         #description="ngModel">
@@ -57,60 +37,60 @@
         <div>
           <label for="price">Price: </label>
           <input type="text"
-            name="price"
-            [(ngModel)]="bicycle.price"
-            required
-            #price="ngModel">
+          name="price"
+          [(ngModel)]="bicycle.price"
+          required
+          #price="ngModel">
         </div>
       </div>
       <div class="location">
         <div>
           <h5> <label for="location">Location: </label></h5>
           <input type="text"
-            name="location"
-            [(ngModel)]="bicycle.location"
-            required
-            minlength="3"
+          name="location"
+          [(ngModel)]="bicycle.location"
+          required
+          minlength="3"
             #location="ngModel">
-        </div>
+          </div>
       </div>
       <button class="btn-green" [disabled]="!formAdd.valid">Create</button>
     </div>   <!--end div.right-->
   </form>
-  </div>  <!--end div.row-->
+</div>  <!--end div.row-->
 
-  <!-- data form validations -->
-  <div *ngIf="title.touched && title.errors">
-    <div *ngIf='title.errors.required'>You must enter a title. </div>
-    <div *ngIf='title.errors.minlength'>Title must be at least 3 characters. </div>
-  </div>
-  <div *ngIf="location.touched && location.errors">
-    <div *ngIf='location.errors.required'>You must enter a location. </div>
-    <div *ngIf='location.errors.minlength'>Location must be at least 3 characters. </div>
-  </div>
-  <div *ngIf="price.touched && price.errors">
-    <div *ngIf='price.errors.required'>You must enter a price. </div>
-  </div>
-  <!-- end validations -->
+<!-- data form validations -->
+<div *ngIf="title.touched && title.errors">
+  <div *ngIf='title.errors.required'>You must enter a title. </div>
+  <div *ngIf='title.errors.minlength'>Title must be at least 3 characters. </div>
+</div>
+<div *ngIf="location.touched && location.errors">
+  <div *ngIf='location.errors.required'>You must enter a location. </div>
+  <div *ngIf='location.errors.minlength'>Location must be at least 3 characters. </div>
+</div>
+<div *ngIf="price.touched && price.errors">
+  <div *ngIf='price.errors.required'>You must enter a price. </div>
+</div>
+<!-- end validations -->
 
 
-  <h3>My Listings:</h3>
-  <div class="row" *ngFor='let bicycle of bicycles' >
-      <form (submit)="onUpdate($event, formUpdate)" #formUpdate="ngForm" >
-        <!-- <input type="hidden" name="_id" [(ngModel)]="bicycle._id"> -->
-        <div class="pic">
-          <div>
-            <label for="img">Image Path: </label>
-            <input type="text"
-              name="img"
-              [(ngModel)]="bicycle.img"
-              #img="ngModel">
-          </div>
-          <div>
-            <img src="{{ bicycle.img }}" >
-          </div>
-        </div>
-        <div class="middle">
+<h3>My Listings:</h3>
+<div class="row" *ngFor='let bicycle of bicycles' >
+  <form (submit)="onUpdate($event, formUpdate)" #formUpdate="ngForm" >
+    <!-- <input type="hidden" name="_id" [(ngModel)]="bicycle._id"> -->
+    <div class="pic">
+      <div>
+        <label for="img">Image Path: </label>
+        <input type="text"
+        name="img"
+        [(ngModel)]="bicycle.img"
+        #img="ngModel">
+      </div>
+      <div>
+        <img src="{{ bicycle.img }}" >
+      </div>
+    </div>
+    <div class="middle">
           <h1>Title:</h1>
           <div><input type="text"
             name="title"
@@ -120,8 +100,8 @@
             #title="ngModel">
           </div>
           <div>
-           <h1><label for="description">Description: </label></h1>
-          <input type="text"
+            <h1><label for="description">Description: </label></h1>
+            <input type="text"
             name="description"
             [(ngModel)]="bicycle.description"
             #description="ngModel">
@@ -132,21 +112,21 @@
             <div>
               <label for="price">Price: </label>
               <input type="text"
-                name="price"
-                [(ngModel)]="bicycle.price"
-                required
-                #price="ngModel">
+              name="price"
+              [(ngModel)]="bicycle.price"
+              required
+              #price="ngModel">
             </div>
           </div>
           <div class="location">
             <div>
               <h5> <label for="location">Location: </label></h5>
               <input type="text"
-                name="location"
-                [(ngModel)]="bicycle.location"
-                required
-                minlength="3"
-                #location="ngModel">
+              name="location"
+              [(ngModel)]="bicycle.location"
+              required
+              minlength="3"
+              #location="ngModel">
             </div>
           </div>
           <!-- <button class="btn-green" [disabled]="!formUpdate.valid" >Update</button> -->
@@ -157,36 +137,4 @@
         </div>   <!--end div.right-->
       </form>
       </div>  <!--end div.row-->
-
-      <!-- data form validations -->
-      <!-- <div *ngIf="title.touched && title.errors">
-        <div *ngIf='title.errors.required'>You must enter a title. </div>
-        <div *ngIf='title.errors.minlength'>Title must be at least 3 characters. </div>
-      </div>
-      <div *ngIf="location.touched && location.errors">
-        <div *ngIf='location.errors.required'>You must enter a location. </div>
-        <div *ngIf='location.errors.minlength'>Location must be at least 3 characters. </div>
-      </div>
-      <div *ngIf="price.touched && price.errors">
-        <div *ngIf='price.errors.required'>You must enter a price. </div>
-      </div> -->
-      <!-- end validations -->
-
-
-
-
-
-<!-- div test----------------------------------------- -->
-<!-- <h1>New row test</h1>
-<div class="row" *ngFor='let bicycle of bicycles'>
-  <div class="pic"><img src="{{ bicycle.img }}" ></div>
-  <div class="middle">
-    <h1>{{ bicycle.title }}</h1>
-    <p>{{ bicycle.description }}</p>
-  </div>
-  <div class="right">
-    <div class="price">${{ bicycle.price }}</div>
-    <div class="location">{{ bicycle.location }}</div>
-    <button class="btn-green">Submit</button>
-  </div>
-</div> -->
+</section>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Bicycle } from '../bicycle';
 import { NgForm } from '@angular/forms';
 import { BicycleService } from '../bicycle.service';
-
 import { AuthService } from '../auth.service';
 import { CookieService } from 'ngx-cookie'
 import { Router } from '@angular/router';
@@ -30,12 +29,11 @@ export class BicycleModifyComponent implements OnInit {
   ngOnInit() {
     this.bicycleService.getBicycles().subscribe(bicycles=>{
       this.bicycles = bicycles;
+      //filter for current user bicycles only
+      this.bicycles = this.bicycles.filter(bicycle => bicycle.owner_id == this.owner_id);
     });
 
-    // this.authService.sessionID$.subscribe(sessionID =>{
-    //   console.log('in modify...', sessionID);
-    //   this.owner_id = sessionID;
-    // })
+
     this.owner_id = this.cookieService.get('userID');
     console.log('in modify showing ownerID', this.owner_id);
 
@@ -44,9 +42,8 @@ export class BicycleModifyComponent implements OnInit {
 
   onAdd(event:Event, formData:NgForm){
     event.preventDefault;
+    this.bicycle.owner_id = this.owner_id;
     console.log('Adding bicycle: ', this.bicycle);
-    // this.bicycles.push(this.bicycle);
-
     this.bicycleService.addBicycle(this.bicycle).subscribe(bicycle=>{
       console.log('bicycle from api:', bicycle);
       this.bicycles.push(bicycle);
@@ -64,13 +61,6 @@ export class BicycleModifyComponent implements OnInit {
     });
 
   }
-
-  // onUpdate(event:Event, form:NgForm){
-  //   event.preventDefault();
-  //   console.log('Updating bicycle: ', form.value.title);
-  //   console.log(form.value.title);
-  //   console.log(form.value._id);
-  // }
 
   onUpdate(bicycle:Bicycle){
     event.preventDefault();
@@ -96,7 +86,5 @@ export class BicycleModifyComponent implements OnInit {
       this.router.navigateByUrl('/');
     });
   }
-
-
 
 }

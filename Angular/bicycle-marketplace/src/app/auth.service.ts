@@ -12,7 +12,6 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private base = '/api/auth/';
   authorized$ = new BehaviorSubject(this.isAuthed());
-  sessionID$: BehaviorSubject<any> = new BehaviorSubject(String);
 
   constructor(
     private readonly http: HttpClient,
@@ -43,8 +42,6 @@ export class AuthService {
   isAuthed(): boolean{
     const expired = parseInt(this.cookieService.get('expiration'), 10);
     const userID = this.cookieService.get('userID');
-    console.log('in authed...userID', userID);
-    // this.sessionID$.next(userID);
     const session = this.cookieService.get('session');
 
     return expired && userID && session && expired > Date.now();

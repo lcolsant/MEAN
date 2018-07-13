@@ -41,10 +41,8 @@ export class BicycleListComponent implements OnInit {
     });
   }
 
-
-
-  // onDelete(bicycle:Bicycle){
-  //   console.log('deleting bicycle', bicycle.title);
-  // }
+  contact(bicycle:Bicycle){
+    alert(`Thanks for your interest in ${bicycle.title}. Please contact user ${bicycle.owner_id} for more details. This bicycle is located in ${bicycle.location}.`);
+  }
 
 }

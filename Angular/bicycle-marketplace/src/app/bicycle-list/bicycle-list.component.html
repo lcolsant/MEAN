@@ -1,44 +1,26 @@
-<!-- <div class="container">
-    <h1>Bicycle MarketPlace</h1>
-    <ul>
-      <li>
-        <a [routerLink]="['/browse']">Browse</a>
-      </li>
-      <li>|</li>
-      <li>
-        <a [routerLink]="['/listings']">My Listings</a>
-      </li>
-      <li>|</li>
-      <li>
-        <button (click)=logout()>Log Out</button> -->
-        <!-- <a [routerLink]="['']" onClick="logout()">Log Out</a> -->
-        <!-- <a href="#" onClick="logout()">Log Out</a> -->
-      <!-- </li>
-    </ul>
-    <router-outlet></router-outlet>
-  </div> -->
-
-<h3>List of available bicycles:</h3>
-<div class="container">
+<section>
+  <h3>List of available bicycles:</h3>
+  <div class="container">
     <!-- <label for="search"><b>Search: </b></label> -->
     <input class="search-bar" type="text" placeholder="Search bicycle title..." [(ngModel)]='filter.title'>
     <button *ngIf='filter.title' (click)='filter.title = null' class="">x</button>
-</div>
+  </div>
 
-<div class="row" *ngFor='let bicycle of bicycles | search:filter'>
-  <div class="pic"><img src="{{ bicycle.img }}" ></div>
-  <div class="middle">
-    <h1>{{ bicycle.title }}</h1>
-    <p>{{ bicycle.description }}</p>
-  </div>
-  <div class="right">
-    <div class="price">${{ bicycle.price }}</div>
-    <div class="location">{{ bicycle.location }}</div>
-    <div *ngIf='!authed'>
-      <button class="btn-green">Submit</button>
+  <div class="row" *ngFor='let bicycle of bicycles | search:filter'>
+    <div class="pic"><img src="{{ bicycle.img }}" ></div>
+    <div class="middle">
+      <h1>{{ bicycle.title }}</h1>
+      <p>{{ bicycle.description }}</p>
     </div>
-    <div>
-      <button class="btn-green">Contact</button>
+    <div class="right">
+      <div class="price">${{ bicycle.price }}</div>
+      <div class="location">{{ bicycle.location }}</div>
+      <div *ngIf='!authed'>
+        <button class="btn-green">Submit</button>
+      </div>
+      <div>
+        <button class="btn-green" (click)="contact(bicycle)">Contact</button>
+      </div>
     </div>
   </div>
-</div>
+</section>
