@@ -14,6 +14,7 @@ export class BicycleListComponent implements OnInit {
 
   authed: boolean;
   bicycles:Array<Bicycle> = [];
+  filter: Bicycle = new Bicycle();
 
   constructor(
     private bicycleService:BicycleService,

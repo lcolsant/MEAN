@@ -44,7 +44,7 @@ export class AuthService {
     const expired = parseInt(this.cookieService.get('expiration'), 10);
     const userID = this.cookieService.get('userID');
     console.log('in authed...userID', userID);
-    this.sessionID$.next(userID);
+    // this.sessionID$.next(userID);
     const session = this.cookieService.get('session');
 
     return expired && userID && session && expired > Date.now();

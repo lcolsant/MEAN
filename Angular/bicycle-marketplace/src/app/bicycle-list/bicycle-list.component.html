@@ -19,8 +19,13 @@
   </div>
 
 <h3>List of available bicycles:</h3>
+<div class="container">
+    <!-- <label for="search"><b>Search: </b></label> -->
+    <input class="search-bar" type="text" placeholder="Search bicycle title..." [(ngModel)]='filter.title'>
+    <button *ngIf='filter.title' (click)='filter.title = null' class="">x</button>
+</div>
 
-<div class="row" *ngFor='let bicycle of bicycles'>
+<div class="row" *ngFor='let bicycle of bicycles | search:filter'>
   <div class="pic"><img src="{{ bicycle.img }}" ></div>
   <div class="middle">
     <h1>{{ bicycle.title }}</h1>
