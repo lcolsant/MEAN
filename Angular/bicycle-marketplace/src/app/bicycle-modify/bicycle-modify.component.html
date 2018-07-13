@@ -23,7 +23,7 @@
 {{formAdd.value | json }}
 <div class="row" >
   <form (submit)="onAdd($event, formAdd)" #formAdd="ngForm" >
-    <input type="hidden" name="owner_id" value="user._id" [(ngModel)]="bicycle.owner_id">
+    <input type="hidden" name="owner_id" value="{{owner_id}}" [(ngModel)]="bicycle.owner_id">
     <div class="pic">
       <div>
         <h1><label for="img">Image Path: </label></h1>
