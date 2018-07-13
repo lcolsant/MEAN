@@ -19,8 +19,8 @@ const userSchema = new Schema({
     validate: {
       validator(value) {
         return validator.isEmail(value);
-      }
-    }
+      },
+    },
   },
   password: {
     type: String,

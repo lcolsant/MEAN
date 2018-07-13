@@ -10,15 +10,20 @@
       </li>
       <li>|</li>
       <li>
-        <a [routerLink]="['/']">Log Out</a>
+        <button (click)=logout()>Log Out</button>
+        <!-- <a [routerLink]="['/']">Log Out</a> -->
+        <!-- <a href="#" onClick="logout()">Log Out</a> -->
+
       </li>
     </ul>
     <router-outlet></router-outlet>
   </div>
 
 <h3>Add a bicycle:</h3>
+{{formAdd.value | json }}
 <div class="row" >
   <form (submit)="onAdd($event, formAdd)" #formAdd="ngForm" >
+    <input type="hidden" name="owner_id" value="user._id" [(ngModel)]="bicycle.owner_id">
     <div class="pic">
       <div>
         <h1><label for="img">Image Path: </label></h1>
@@ -40,7 +45,7 @@
       <div>
        <h1><label for="description">Description: </label></h1>
       <input type="text"
-        name="position"
+        name="description"
         [(ngModel)]="bicycle.description"
         #description="ngModel">
       </div>

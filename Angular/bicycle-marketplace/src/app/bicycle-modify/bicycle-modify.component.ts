@@ -3,6 +3,10 @@ import { Bicycle } from '../bicycle';
 import { NgForm } from '@angular/forms';
 import { BicycleService } from '../bicycle.service';
 
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-bicycle-modify',
   templateUrl: './bicycle-modify.component.html',
@@ -11,41 +15,31 @@ import { BicycleService } from '../bicycle.service';
 export class BicycleModifyComponent implements OnInit {
 
   bicycle:Bicycle = new Bicycle();
-  bicycles:Array<Bicycle> = [
-    // {
-    //   _id:"1",
-    //   title:"Trek Domane",
-    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-    //   price:"799",
-    //   location:"San Jose",
-    //   img:"../../assets/bike1.jpeg",
-    // },
-    // {
-    //   _id:"2",
-    //   title:"GT Aggressor Pro ",
-    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-    //   price:"399",
-    //   location:"Santa Cruz",
-    //   img:"../../assets/bike2.jpeg",
-    // },
-    // {
-    //   _id:"3",
-    //   title:"Schwinn Cruiser",
-    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-    //   price:"100",
-    //   location:"San Francisco",
-    //   img:"../../assets/bike4.jpeg",
-    // },
-  ];
+  bicycles:Array<Bicycle> = [];
+  owner_id;
 
   constructor(
     private bicycleService:BicycleService,
+    private authService:AuthService,
+    private readonly router: Router,
+
   ) { }
 
   ngOnInit() {
     this.bicycleService.getBicycles().subscribe(bicycles=>{
       this.bicycles = bicycles;
     });
+
+    this.authService.sessionID$.subscribe(sessionID =>{
+      console.log('in modify...', sessionID);
+      this.owner_id = sessionID;
+    })
+
+    // this.authService.sessionID$.subscribe(owner_id=>{
+    //   this.owner_id = owner_id;
+    //   console.log('in modify...', this.owner_id);
+    // });
+
   }
 
   onAdd(event:Event, formData:NgForm){
@@ -94,6 +88,13 @@ export class BicycleModifyComponent implements OnInit {
   onClick(event: Event) {
     event.stopPropagation();
     console.log('stopping prop');
+  }
+
+  logout(){
+    this.authService.logout().subscribe(()=>{
+      console.log('user logged off successfully.');
+      this.router.navigateByUrl('/');
+    });
   }
 
 

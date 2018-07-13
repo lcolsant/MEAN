@@ -1,5 +1,5 @@
 <h3>Login:</h3>
-<form (submit)="login($event, formData)" #formLogin="ngForm" >
+<form (submit)="login(formLogin.value)" #formLogin="ngForm" >
   <div>
     <label for="email">Email: </label>
     <input type="text"

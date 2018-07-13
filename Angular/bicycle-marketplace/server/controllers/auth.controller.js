@@ -25,6 +25,7 @@ module.exports = {
     console.log('registering user', request.body);
     User.create(request.body)
       .then(user => {
+        console.log('in auth controller....returned from api', user);
         // handle login
         completeLogin(request, response, user);
       })
@@ -42,6 +43,7 @@ module.exports = {
 function completeLogin(request, response, user) {
   request.session.user = user.toObject();
   delete request.session.user.password;
+  console.log('request.session.user._id:', request.session.user._id);
 
   response.cookie('userID', user._id.toString());
   response.cookie('expiration', Date.now() + 86400 * 1000);

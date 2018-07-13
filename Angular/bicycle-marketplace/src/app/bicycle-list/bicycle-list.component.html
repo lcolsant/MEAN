@@ -10,34 +10,15 @@
       </li>
       <li>|</li>
       <li>
-        <a [routerLink]="['/']">Log Out</a>
+        <button (click)=logout()>Log Out</button>
+        <!-- <a [routerLink]="['']" onClick="logout()">Log Out</a> -->
+        <!-- <a href="#" onClick="logout()">Log Out</a> -->
       </li>
     </ul>
     <router-outlet></router-outlet>
   </div>
 
 <h3>List of available bicycles:</h3>
-<!-- <table>
-  <thead>
-    <th>Image</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Location</th>
- </thead>
- <tbody>
-  <tr *ngFor='let bicycle of bicycles'>
-    <td><img src="{{ bicycle.img }}" ></td>
-    <td>{{ bicycle.title }}</td>
-    <td>{{ bicycle.description }}</td>
-    <td>{{ bicycle.price }}</td>
-    <td>{{ bicycle.location }}</td>
-    <td>
-      <button class="btn-red" (click)='onDelete(bicycle)'>DELETE</button>
-    </td>
-  </tr>
- </tbody>
-</table> -->
 
 <div class="row" *ngFor='let bicycle of bicycles'>
   <div class="pic"><img src="{{ bicycle.img }}" ></div>
@@ -48,6 +29,11 @@
   <div class="right">
     <div class="price">${{ bicycle.price }}</div>
     <div class="location">{{ bicycle.location }}</div>
-    <button class="btn-green">Submit</button>
+    <div *ngIf='!authed'>
+      <button class="btn-green">Submit</button>
+    </div>
+    <div>
+      <button class="btn-green">Contact</button>
+    </div>
   </div>
 </div>

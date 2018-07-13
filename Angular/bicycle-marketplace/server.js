@@ -28,9 +28,9 @@ app
   .use(bodyParser.urlencoded({extended: true}))
   .use(bodyParser.json())
   .use(express.static(path.join(__dirname, './dist/bicycle-marketplace')))
-  .use('/api', require('./server/routes'))
   .use(session(sessionConfig))
   .use(cookieParser('asldkfaskdjfasdfkj'))
+  .use('/api', require('./server/routes'))
   .use(require('./server/routes/catch-all.route'));
 
 app.listen(port, ()=> console.log(`Express server listening on port ${port}`));

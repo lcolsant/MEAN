@@ -32,6 +32,10 @@ const bicycleSchema = new Schema({
     trim: true,
   },
 
+  owner_id:{
+    type: String,
+  },
+
 
 },
 {

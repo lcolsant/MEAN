@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     console.log('loggin in user...', user);
 
     this.auth.login(user).subscribe(user=>{
-      console.log('from api...log in successful.',user);
+      console.log('from api...logged in successfully.',user);
       this.router.navigateByUrl('browse');
 
     })

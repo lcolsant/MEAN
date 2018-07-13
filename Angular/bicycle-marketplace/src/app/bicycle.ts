@@ -6,6 +6,7 @@ export class Bicycle {
   price:string;
   location:string;
   img:string;
+  owner_id:string;
 
   constructor(){}
 }

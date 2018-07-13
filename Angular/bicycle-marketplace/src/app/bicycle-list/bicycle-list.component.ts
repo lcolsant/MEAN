@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Bicycle } from '../bicycle';
 import { BicycleService } from '../bicycle.service';
+import { AuthService } from '../auth.service';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bicycle-list',
@@ -9,42 +12,35 @@ import { BicycleService } from '../bicycle.service';
 })
 export class BicycleListComponent implements OnInit {
 
-  bicycles:Array<Bicycle> = [
-    // {
-    //   _id:"1",
-    //   title:"Trek Domane",
-    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-    //   price:"799",
-    //   location:"San Jose",
-    //   img:"../../assets/bike1.jpeg",
-    // },
-    // {
-    //   _id:"2",
-    //   title:"GT Aggressor Pro ",
-    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-    //   price:"399",
-    //   location:"Santa Cruz",
-    //   img:"../../assets/bike2.jpeg",
-    // },
-    // {
-    //   _id:"3",
-    //   title:"Schwinn Cruiser",
-    //   description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-    //   price:"100",
-    //   location:"San Francisco",
-    //   img:"../../assets/bike4.jpeg",
-    // },
-  ];
+  authed: boolean;
+  bicycles:Array<Bicycle> = [];
 
   constructor(
     private bicycleService:BicycleService,
+    private authService:AuthService,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
     this.bicycleService.getBicycles().subscribe(bicycles=>{
       this.bicycles = bicycles;
     });
+
+    this.authService.authorized$.subscribe(authed => {
+      this.authed = authed;
+      console.log('is authed', this.authed);
+    });
+
   }
+
+  logout(){
+    this.authService.logout().subscribe(()=>{
+      console.log('user logged off successfully.');
+      this.router.navigateByUrl('/');
+    });
+  }
+
+
 
   // onDelete(bicycle:Bicycle){
   //   console.log('deleting bicycle', bicycle.title);
