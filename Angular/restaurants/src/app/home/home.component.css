@@ -1,0 +1,40 @@
+
+
+table {
+  border: 1px solid black;
+}
+tr:nth-child(even) {
+  background-color: #CCC;
+}
+
+tr:nth-child(odd) {
+  background-color: #FFF;
+}
+td{
+  width: 300px;
+}
+
+th {
+  text-align: left;
+}
+
+.btn-red {
+  background-color: darkred;
+  color: white;
+}
+.btn-blue {
+  background-color: darkblue;
+  color: white;
+}
+.btn-orange {
+  background-color: darkorange;
+  color: white;
+}
+.btn-green {
+  background-color: darkgreen;
+  color: white;
+  margin-bottom: 10px;
+  width: 130px;
+  height: 40px;
+  border-radius: 5px;
+}

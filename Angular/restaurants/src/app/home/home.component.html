@@ -1,0 +1,23 @@
+
+
+<section>
+  <button class="btn-green" [routerLink]=" ['/','restaurants','new'] ">New Restaurant</button>
+  <table>
+    <thead>
+      <th>Restaurant</th>
+      <th>Cuisine</th>
+      <th>Actions Available</th>
+    </thead>
+    <tbody>
+    <tr *ngFor='let restaurant of restaurants'>
+      <td>{{ restaurant.name }}</td>
+      <td>{{ restaurant.cuisine }}</td>
+      <td>
+        <button class="btn-blue" (click)='onReviews(restaurant)'>Read Reviews</button>
+        <button class="btn-orange" (click)='onUpdate(restaurant)'>Update</button>
+        <button class="btn-red" (click)='onDelete(restaurant)'>Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>

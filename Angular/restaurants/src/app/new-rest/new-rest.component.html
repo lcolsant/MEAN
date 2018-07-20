@@ -1,0 +1,38 @@
+<section>
+  <h3>Register a Restaurant:</h3>
+  <!-- {{formData.value | json }} -->
+  <div class="register">
+    <form (submit)="onAdd(formData.value)" #formData="ngForm" >
+      <div>
+        <label for="name">Restaurant name: </label>
+        <input type="text"
+        name="name"
+        [(ngModel)]="restaurant.name"
+        required
+        minlength="3"
+        #name="ngModel">
+      </div>
+      <div>
+        <label for="cuisine">Cuisine: </label>
+        <input type="text"
+        name="cuisine"
+        [(ngModel)]="restaurant.cuisine"
+        required
+        minlength="3"
+      #cuisine="ngModel">
+    </div>
+    <button class="btn-blue" [disabled]="!formData.valid">Register</button>
+    <button class="btn-red" type="button" (click)="onCancel()">Cancel</button>
+  </form>
+    <!-- data form validations -->
+    <div class="warn" *ngIf="name.touched && name.errors">
+      <div *ngIf='name.errors.required'>You must enter a restaurant name. </div>
+      <div *ngIf='name.errors.minlength'>Restaurant name must be at least 3 characters. </div>
+    </div>
+    <div class="warn" *ngIf="cuisine.touched && cuisine.errors">
+      <div *ngIf='cuisine.errors.required'>You must enter a cuisine. </div>
+      <div *ngIf='cuisine.errors.minlength'>Cuisine must be at least 3 characters. </div>
+    </div>
+    <!-- end validations -->
+  </div>
+</section>
