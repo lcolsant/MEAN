@@ -1,0 +1,112 @@
+for Express ....don't forget to run processes in background:
+**run MongoDB (i.e. mongod) server in background
+**run 'ng build --watch'  (for angular rebuilds after code updates)
+**run 'nodemon' (to get express server running)
+foreman can be used to run all services above
+
+start with Angular before adding backend.... use 'ng serve'
+
+1) Start Project:
+ng new my-projet-name --routing
+note: include [--routing]
+
+2) Install dependencies:
+if yarn...
+yarn add express body-parser mongoose
+if npm..
+npm install express body-parser mongoose --save
+
+
+3) additional login/reg dependencies:
+yarn add express-session cookie-parser ngx-cookie validator mongoose-unique-validator bcrypt
+
+require session and cookie-parser in server.js
+
+
+4) Generate components:
+ng generate component [alpha]
+[name of component]
+
+5) Generate service:
+    ng generate service [myService]
+    [name of service]
+    import service and add service to providers[] array in app.module.ts 
+    inject service in constructor function of all components that utilize the service
+
+6) Import FormsModule, HttpClientModule, AppRoutingModule in app.module.ts (add to imports)
+    Import services in app.module.ts and add to providers []
+
+7) Configure Routing
+
+8) Run ng serve and make sure all routing works (on localhost:4200) appropriately before adding Full Mean setup below and switching server
+    to express (i.e. nodemon server.js)
+
+Full Mean setup
+1) mkdir server in root directory of project
+2) touch server.js in root directory of project
+3) create subdirectories of server folder:  
+    a) config 
+    b) controllers
+    c) models
+4) add dependencies using yarn (if not already done during angular setup):
+    a) yarn add express
+    b) yarn add mongoose  (note: watch out for breaking change on latest version. downgrade to 5.1.8 if needed)
+    c) yarn add body-parser
+5) build out initial server.js file
+6) Create entry point in package.json....add --> ("main": "server.js",)
+7) build out models (e.g. book.js in models folder)
+8) build database.js file in config folder
+9) build controller.js file in controller folder
+10) build barrel for controller. Create index.js in controller folder (import all controllers and export)
+11) create 'routes' subdirectory of server folder
+12) build barrel (index.js) for for routes folder. Import and export routes with prefix. Use router.use.
+13) build catch-all.route.js file in routes directory
+14) build object file in app foler (e.g. book.ts)
+15) build out service file and append base prefix to routes (e.g. private base = '/api/notes'; )
+16) run 'ng build --watch' in root directory of angular project (make sure that dist folder path in server.js and catch-all.route.js is configured properly after build)
+17) Update component files for service subscription and logic
+18) create new terminal and run 'nodemon' to test read/write to db
+
+
+Foreman
+1) yarn add -D foreman  (in root directory of project)
+2) Create Procfile under src directory
+3) add processes to Procfile:
+    angular: ng build --watch
+    express: nodemon server.js
+    mongo: mongod
+4) in package.json add path under "e2e" as follows:
+    "foreman": "./node_modules/.bin/nf"
+5) see if foreman installed correctly: 'npm run foreman'
+6) start foreman using the following command:  'npm run foreman start'
+    
+Login and Reg
+Express...
+1) install dependencies ***see above
+2) update server.js file  (require at header | const session config | app.use)
+    **watch ordering of middleware in server.js
+3) create user.js in server/models directory
+4) create auth.controller.js in controllers directory
+5) add auth.controller.js to barrel in controllers directory (index.js)
+6) create auth.routes.js in routes directory
+7) add auth.routes.js to the barrel (index.js) in routes directory
+Angular...
+8) Configure routes in app-routing.module.ts
+***make sure ngx-cookie has been installed and added to app.module.ts file before next step
+9) Create auth.service.ts file in root directory and develop.  ['ng generate service auth'];  Add cookie-Service to imports on auth.service.ts
+10) Add auth.serive to app.module imports and providers[]
+11) build a user class ['ng generate class user'] and develop;
+12) Inject auth.service into register and login components
+
+Route Guards
+1) create auth.guard.ts in root of project (app folder next to app.module.ts) 
+2) add auth.guard to app.module.ts on imports and add to providers[]
+3) set guards on desired paths in app-routing.module.ts
+
+
+
+VS Code search for file:
+Ctrl+P
+
+Before uploading exam delete dist and node_modules directories
+

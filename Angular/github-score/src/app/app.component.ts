@@ -8,6 +8,7 @@ import { TaskService } from './task.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
   data: any[] = [];
   error: string[] = [];
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit {
 
   //pass username retrieved from form to task service gitData function
   sendData(formData: NgForm, event: Event){
+    this.username = formData.value.username;
     event.preventDefault();
     this._taskService.gitData(this.username);
     formData.reset();

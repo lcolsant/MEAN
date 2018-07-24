@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   emails = [
     {email: 'bill@gates.com', important: true, subject: 'New Windows', content: 'Windows XI will launch in 2100.'},
     {email: 'ada@lovelace.com', important: true, subject: 'Programming', content: 'Echantress of Numbers.'},
@@ -13,3 +14,4 @@ export class AppComponent {
     {email: 'gabe@gates.com', important: false, subject: 'HL3!', content: 'Just kidding...'}
   ]
 }
+

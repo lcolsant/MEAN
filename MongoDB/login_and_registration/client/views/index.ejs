@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>Email Validation with MongoDB</title>
+  <link rel="stylesheet" type="text/css" href="style.css" >
+</head>
+  <body>
+
+    <h1>Please register:</h1>
+    <form action='/register' method='POST'>
+      <p><label for="fname">First Name:<input type="text" name="fname" id="fname"></label></p>
+      <p><label for="lname">Last Name:<input type="text" name="lname" id="lname"></label></p>
+      <p><label for="email">Email:<input type="text" name="email" id="email"></label></p>
+      <p><label for="password">Password:<input type="password" name="password" id="password"></label></p>
+      <p><label for="pass_confirm">Password (confirm):<input type="password" name="pass_confirm" id="pass_confirm"></label></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+    <!-- add error messaging here -->
+    <div id="errors">
+      <p>flash errors:</p>
+        <% if (expressFlash.length > 0 ) { %>
+          <% for (let x=0; x<expressFlash.length; x++) { %>
+            <h3><%= expressFlash[x] %></h3>
+          <% } %>
+        <% } %>
+        <p>--end flash errors--</p>
+    </div>
+    <!-- end error messaging -->
+
+    <!-- add error messaging here -->
+    <div id="errors">
+        <% if (typeof(errors) !== 'undefined' ) { %>
+          <% for (const key in errors) { %>
+            <h3><%= errors[key].message %></h3>
+          <% } %>
+        <% } %>
+    </div>
+    <!-- end error messaging -->
+
+    <h1>Login (if registered):</h1>
+    <form action='/login' method='POST'>
+      <p><label for="email">Email:<input type="text" name="email" id="email"></label></p>
+      <p><label for="password">Password:<input type="password" name="password" id="pass"></label></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+  </body>
+</html>
